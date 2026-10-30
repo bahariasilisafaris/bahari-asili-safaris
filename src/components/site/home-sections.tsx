@@ -33,17 +33,21 @@ export function HomeExperience() {
 
   return <div className="ba-home">
     <section className="ba-hero">
-      <img src={img.hero} alt="Wide East African savannah under a warm evening sky" fetchPriority="high" className="ba-hero-image" />
+      <img src={img.hero} alt="" fetchPriority="high" className="ba-hero-image" />
+      <video className="ba-hero-video" autoPlay muted loop playsInline preload="metadata" poster="https://raw.githubusercontent.com/Sheddymae/bahari-asili-safaris/922fffd454c0b430a5ee4cb11591a8b4c9519796/public/images/hero/video-poster.jpg" aria-hidden="true">
+        <source src="https://raw.githubusercontent.com/Sheddymae/bahari-asili-safaris/922fffd454c0b430a5ee4cb11591a8b4c9519796/public/videos/hero-drone-mobile.mp4" type="video/mp4" media="(max-width: 767px)" />
+        <source src="https://raw.githubusercontent.com/Sheddymae/bahari-asili-safaris/922fffd454c0b430a5ee4cb11591a8b4c9519796/public/videos/hero-drone-desktop.mp4" type="video/mp4" />
+      </video>
       <div className="ba-hero-shade" />
       <div className="ba-hero-copy">
         <p className="ba-eyebrow ba-eyebrow-light">KENYA · TANZANIA · EAST AFRICA</p>
         <h1>Wild Africa.<br/><em>Wonderfully personal.</em></h1>
-        <p>Thoughtfully planned safaris across Kenya and Tanzania, shaped around the places, wildlife and moments you want to experience.</p>
-        <div className="mt-7 flex flex-wrap justify-center gap-3">
-          <button className="ba-button" onClick={() => setQuoteOpen(true)}>Get a free quote <ArrowRight size={16}/></button>
-          <a className="ba-button ba-button-outline" href="#safaris">View safari packages</a>
+        <p>Discover the wild beauty of Kenya and Tanzania on a safari shaped around your interests, your pace and the moments you want to remember.</p>
+        <div className="ba-hero-actions">
+          <button className="ba-button" onClick={() => setQuoteOpen(true)}>Plan your safari <ArrowRight size={16}/></button>
+          <a className="ba-button ba-button-outline" href="#safaris">Explore safari journeys</a>
         </div>
-        <div className="ba-trust"><span><ShieldCheck size={16}/> Personal trip planning</span><span><Globe2 size={16}/> Kenya & Tanzania</span><span><HeartHandshake size={16}/> Tailor-made journeys</span></div>
+        <div className="ba-trust"><span><ShieldCheck size={16}/> Personal trip planning</span><span><Globe2 size={16}/> Kenya & Tanzania</span><span><HeartHandshake size={16}/> Journeys shaped around you</span></div>
       </div>
       <div className="ba-search">
         <label><span>Destination</span><select value={destination} onChange={e=>setDestination(e.target.value)}><option>Any destination</option><option>Kenya</option><option>Tanzania</option><option>Both countries</option></select></label>

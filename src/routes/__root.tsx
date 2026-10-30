@@ -116,6 +116,44 @@ function RootShell({ children }: { children: ReactNode }) {
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
 
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const targets = "main section, main article, main [data-scroll-reveal]";
+    let observer: IntersectionObserver | undefined;
+    const reveal = (scope: ParentNode) => {
+      const elements = scope.querySelectorAll<HTMLElement>(targets);
+      elements.forEach((element) => {
+        if (element.dataset.revealReady) return;
+        element.dataset.revealReady = "true";
+        element.classList.add("site-reveal");
+        observer?.observe(element);
+      });
+    };
+    observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("site-reveal-in");
+        observer?.unobserve(entry.target);
+      });
+    }, { threshold: 0.08, rootMargin: "0px 0px -6% 0px" });
+    document.documentElement.classList.add("has-scroll-reveal");
+    reveal(document);
+    const mutationObserver = new MutationObserver((records) => {
+      records.forEach((record) => record.addedNodes.forEach((node) => {
+        if (node instanceof HTMLElement) {
+          if (node.matches(targets)) reveal(node.parentElement ?? document);
+          else reveal(node);
+        }
+      }));
+    });
+    mutationObserver.observe(document.querySelector("main") ?? document.body, { childList: true, subtree: true });
+    return () => {
+      observer?.disconnect();
+      mutationObserver.disconnect();
+      document.documentElement.classList.remove("has-scroll-reveal");
+    };
+  }, []);
+
   return (
     <QueryClientProvider client={queryClient}>
       <Nav />
