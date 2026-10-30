@@ -14,7 +14,7 @@ export const CONTACT = {
   email: "bahariasilisafaris@gmail.com",
   phone: "+254 745 043 121",
   whatsapp: "+254745043121",
-  address: "Westlands, Nairobi, Kenya",
+  address: "Kenya & Tanzania",
 };
 
 export type Day = { day: number; title: string; body: string; stay: string; meals: string };
