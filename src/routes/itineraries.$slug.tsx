@@ -1,5 +1,5 @@
 import { createFileRoute, notFound } from "@tanstack/react-router";
-import { ArrowDown, ArrowRight, CalendarDays, Check, Clock3, Compass, MapPin, MessageCircle, Sparkles } from "lucide-react";
+import { ArrowRight, CalendarDays, Check, Clock3, Compass, MapPin, MessageCircle, Sparkles } from "lucide-react";
 import { itineraries } from "@/lib/site-data";
 import { PageHero, EnquiryForm } from "@/components/site/layout";
 
