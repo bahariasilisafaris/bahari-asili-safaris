@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { img, itineraries, experiences } from "@/lib/site-data";
-import { Reveal, SplitWords, PillButton, Counter, Eyebrow } from "@/components/site/motion";
+import { Reveal, SplitWords, PillButton, Eyebrow } from "@/components/site/motion";
 import { CTABanner, SectionHead } from "@/components/site/layout";
 
 export const Route = createFileRoute("/")({
