@@ -228,3 +228,29 @@ export function CTABanner({ image, title = "Your Africa story starts with one co
     </section>
   );
 }
+
+
+/** Persistent WhatsApp contact shortcut, available from every page. */
+export function FloatingWhatsApp() {
+  const message = "Hello Bahari Asili Safaris, I have a question about planning a safari in Kenya or Tanzania.";
+  const href = `https://wa.me/${CONTACT.whatsapp}?text=${encodeURIComponent(message)}`;
+
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noreferrer"
+      aria-label="Chat with Bahari Asili Safaris on WhatsApp"
+      className="fixed bottom-[max(1.25rem,env(safe-area-inset-bottom))] right-5 z-[60] inline-flex items-center gap-2.5 sm:right-7"
+    >
+      <span className="rounded-md bg-white px-4 py-3 text-xs text-slate-800 shadow-[0_4px_20px_rgb(0_0_0_/_18%)] sm:px-5 sm:text-sm">
+        Need Help? <strong className="font-bold">Chat with us</strong>
+      </span>
+      <span className="grid h-14 w-14 shrink-0 place-items-center rounded-full bg-[#25D366] text-white shadow-[0_5px_18px_rgb(0_0_0_/_20%)] transition-transform duration-200 hover:scale-105 sm:h-[68px] sm:w-[68px]">
+        <svg viewBox="0 0 32 32" className="h-8 w-8 sm:h-10 sm:w-10" fill="currentColor" aria-hidden="true">
+          <path d="M16.04 3.2A12.7 12.7 0 0 0 5.12 22.38L3.4 28.65l6.42-1.68A12.72 12.72 0 1 0 16.04 3.2Zm0 23.12c-1.96 0-3.88-.53-5.55-1.54l-.4-.24-3.81 1 1.02-3.71-.26-.41a10.38 10.38 0 1 1 9 4.9Zm5.7-7.78c-.31-.16-1.84-.91-2.13-1.01-.29-.11-.5-.16-.71.16-.21.31-.82 1.01-1 1.22-.19.21-.37.24-.69.08-.31-.16-1.32-.49-2.51-1.55-.93-.83-1.56-1.85-1.74-2.16-.18-.32-.02-.49.14-.65.14-.14.32-.37.48-.55.16-.18.21-.31.32-.53.1-.21.05-.4-.03-.56-.08-.16-.71-1.71-.98-2.34-.26-.62-.52-.53-.71-.54h-.61c-.21 0-.56.08-.85.4-.29.31-1.11 1.08-1.11 2.63s1.14 3.05 1.3 3.26c.16.21 2.24 3.42 5.43 4.8.76.33 1.35.53 1.81.68.76.24 1.45.21 2 .13.61-.09 1.84-.75 2.1-1.48.26-.73.26-1.36.18-1.49-.08-.13-.29-.21-.61-.37Z"/>
+        </svg>
+      </span>
+    </a>
+  );
+}

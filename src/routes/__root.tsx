@@ -12,7 +12,7 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
-import { Nav, Footer } from "@/components/site/layout";
+import { Nav, Footer, FloatingWhatsApp } from "@/components/site/layout";
 import { Toaster } from "@/components/ui/sonner";
 
 function NotFoundComponent() {
@@ -127,6 +127,7 @@ function RootComponent() {
         <Outlet />
       </main>
       <Footer />
+      <FloatingWhatsApp />
       <Toaster />
     </QueryClientProvider>
   );
