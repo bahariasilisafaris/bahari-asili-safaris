@@ -28,13 +28,36 @@ export function Logo({ className }: { className?: string }) {
 
 export function Nav() {
  const [open,setOpen]=useState(false);
+ const [mobileSafaris,setMobileSafaris]=useState(false);
+ const [mobileExplore,setMobileExplore]=useState(false);
  return <>
-  <div className="ba-utility"><div><a href={`tel:${CONTACT.whatsapp}`}>{CONTACT.phone}</a><span>Kenya & Tanzania safari specialists</span></div><div><Link to="/contact">Schedule a consultation</Link><Link to="/contact" className="ba-utility-quote">Get free quote</Link><span className="ba-language">EN <span aria-hidden="true">⌄</span></span></div></div>
-  <header className="ba-header"><nav className="ba-nav"><Logo/><ul className="ba-nav-links">
-   <li><Link to="/">Home</Link></li><li className="ba-nav-dropdown"><Link to="/destinations">Destinations <span>⌄</span></Link><div><Link to="/destinations">Maasai Mara</Link><Link to="/destinations">Amboseli</Link><Link to="/destinations">Serengeti</Link><Link to="/destinations">Zanzibar</Link><Link to="/destinations">All destinations</Link></div></li>
-   <li><Link to="/itineraries">Kenya safaris</Link></li><li><Link to="/itineraries">Tanzania safaris</Link></li><li><Link to="/itineraries">Tours & packages</Link></li><li><Link to="/about">Travel guides</Link></li><li><Link to="/about">About us</Link></li><li><Link to="/contact">Contact</Link></li>
-  </ul><Link to="/contact" className="ba-nav-cta">Plan your safari <ArrowRight size={15}/></Link><button aria-label={open?"Close menu":"Open menu"} aria-expanded={open} onClick={()=>setOpen(!open)} className="ba-menu-button">{open?<X/>:<Menu/>}</button></nav>
-  {open&&<div className="ba-mobile-menu">{[{to:"/",label:"Home"},{to:"/destinations",label:"Destinations"},{to:"/itineraries",label:"Kenya safaris"},{to:"/itineraries",label:"Tanzania safaris"},{to:"/itineraries",label:"Tours & packages"},{to:"/about",label:"Travel guides"},{to:"/about",label:"About us"},{to:"/contact",label:"Contact"}].map((item,i)=><Link key={i} to={item.to} onClick={()=>setOpen(false)}>{item.label}<ArrowRight size={15}/></Link>)}</div>}</header>
+  <div className="ba-utility">
+   <div><a href={`tel:${CONTACT.whatsapp}}>{CONTACT.phone}</a><span>Kenya & Tanzania safari specialists</span></div>
+   <div><Link to="/contact">Schedule a consultation</Link><Link to="/contact" className="ba-utility-quote">Get a free quote</Link><span className="ba-language">EN <span aria-hidden="true">⌄</span></span></div>
+  </div>
+  <header className="ba-header">
+   <nav className="ba-nav" aria-label="Main navigation">
+    <Logo/>
+    <ul className="ba-nav-links">
+     <li><Link to="/">Home</Link></li>
+     <li className="ba-nav-dropdown"><Link to="/destinations" aria-haspopup="true">Destinations <span aria-hidden="true">⌄</span></Link><div><Link to="/destinations">Maasai Mara</Link><Link to="/destinations">Amboseli</Link><Link to="/destinations">Serengeti</Link><Link to="/destinations">Zanzibar</Link><Link to="/destinations">All destinations</Link></div></li>
+     <li className="ba-nav-dropdown"><Link to="/itineraries" aria-haspopup="true">Safaris <span aria-hidden="true">⌄</span></Link><div><Link to="/itineraries">Kenya safaris</Link><Link to="/itineraries">Tanzania safaris</Link><Link to="/itineraries">Combined Kenya & Tanzania</Link></div></li>
+     <li><Link to="/tours">Tours & packages</Link></li>
+     <li className="ba-nav-dropdown"><Link to="/about" aria-haspopup="true">Explore <span aria-hidden="true">⌄</span></Link><div><Link to="/about">About us</Link><Link to="/about">Travel guides</Link></div></li>
+     <li><Link to="/contact">Contact</Link></li>
+    </ul>
+    <Link to="/contact" className="ba-nav-cta">Plan your safari <ArrowRight size={15}/></Link>
+    <button aria-label={open?"Close menu":"Open menu"} aria-expanded={open} aria-controls="ba-mobile-navigation" onClick={()=>setOpen(!open)} className="ba-menu-button">{open?<X/>:<Menu/>}</button>
+   </nav>
+   {open&&<div id="ba-mobile-navigation" className="ba-mobile-menu">
+    <Link to="/" onClick={()=>setOpen(false)}>Home<ArrowRight size={15}/></Link>
+    <div className="ba-mobile-group"><button aria-expanded={mobileSafaris} onClick={()=>setMobileSafaris(!mobileSafaris)}>Destinations <span>{mobileSafaris?"−":"+"}</span></button>{mobileSafaris&&<div><Link to="/destinations" onClick={()=>setOpen(false)}>All destinations</Link><Link to="/destinations" onClick={()=>setOpen(false)}>Maasai Mara & Amboseli</Link><Link to="/destinations" onClick={()=>setOpen(false)}>Serengeti & Zanzibar</Link></div>}</div>
+    <div className="ba-mobile-group"><button aria-expanded={mobileExplore} onClick={()=>setMobileExplore(!mobileExplore)}>Safari journeys <span>{mobileExplore?"−":"+"}</span></button>{mobileExplore&&<div><Link to="/itineraries" onClick={()=>setOpen(false)}>Kenya safaris</Link><Link to="/itineraries" onClick={()=>setOpen(false)}>Tanzania safaris</Link><Link to="/itineraries" onClick={()=>setOpen(false)}>Tours & packages</Link></div>}</div>
+    <Link to="/about" onClick={()=>setOpen(false)}>About us & travel guides<ArrowRight size={15}/></Link>
+    <Link to="/contact" onClick={()=>setOpen(false)}>Contact<ArrowRight size={15}/></Link>
+    <Link to="/contact" className="ba-mobile-quote" onClick={()=>setOpen(false)}>Get a free quote <ArrowRight size={15}/></Link>
+   </div>}
+  </header>
  </>;
 }
 
