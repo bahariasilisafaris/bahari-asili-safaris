@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as DestinationsRouteImport } from './routes/destinations'
+import { Route as DestinationsSlugRouteImport } from './routes/destinations.$slug'
 import { Route as EnquireRouteImport } from './routes/enquire'
 import { Route as LodgesRouteImport } from './routes/lodges'
 import { Route as PlanRouteImport } from './routes/plan'
@@ -40,6 +41,11 @@ const ContactRoute = ContactRouteImport.update({
 const DestinationsRoute = DestinationsRouteImport.update({
   id: '/destinations',
   path: '/destinations',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DestinationsSlugRoute = DestinationsSlugRouteImport.update({
+  id: '/destinations/$slug',
+  path: '/destinations/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
 const EnquireRoute = EnquireRouteImport.update({
@@ -88,6 +94,9 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
   '/destinations': typeof DestinationsRoute
+  '/destinations/$slug': typeof DestinationsSlugRoute
+  '/destinations/$slug': typeof DestinationsSlugRoute
+  '/destinations/$slug': typeof DestinationsSlugRoute
   '/enquire': typeof EnquireRoute
   '/lodges': typeof LodgesRoute
   '/plan': typeof PlanRoute
@@ -176,6 +185,7 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   ContactRoute: typeof ContactRoute
   DestinationsRoute: typeof DestinationsRoute
+  DestinationsSlugRoute: typeof DestinationsSlugRoute
   EnquireRoute: typeof EnquireRoute
   LodgesRoute: typeof LodgesRoute
   PlanRoute: typeof PlanRoute
@@ -214,6 +224,13 @@ declare module '@tanstack/react-router' {
       path: '/destinations'
       fullPath: '/destinations'
       preLoaderRoute: typeof DestinationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/destinations/$slug': {
+      id: '/destinations/$slug'
+      path: '/destinations/$slug'
+      fullPath: '/destinations/$slug'
+      preLoaderRoute: typeof DestinationsSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/enquire': {
@@ -280,6 +297,7 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   ContactRoute: ContactRoute,
   DestinationsRoute: DestinationsRoute,
+  DestinationsSlugRoute: DestinationsSlugRoute,
   EnquireRoute: EnquireRoute,
   LodgesRoute: LodgesRoute,
   PlanRoute: PlanRoute,
