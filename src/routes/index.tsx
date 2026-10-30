@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
-import { img, itineraries, experiences, reviews } from "@/lib/site-data";
+import { img, itineraries, experiences } from "@/lib/site-data";
 import { Reveal, SplitWords, PillButton, Counter, Eyebrow } from "@/components/site/motion";
 import { CTABanner, SectionHead } from "@/components/site/layout";
 
@@ -76,13 +76,13 @@ function Hero() {
             </div>
             <div className="relative hidden h-[360px] lg:block">
               <div className="float-card glass absolute right-0 top-0 w-64 rounded-3xl border border-ink-foreground/20 p-5" style={{ ["--i" as string]: 0 }}>
-                <p className="text-[11px] font-semibold uppercase tracking-widest text-ink-foreground/70">Next departure</p>
-                <p className="mt-2 font-display text-xl font-bold">Great Migration Classic</p>
-                <div className="mt-4 flex items-end justify-between"><span className="text-sm text-ink-foreground/70">6 seats left</span><span className="font-display text-3xl font-bold">14 Jul</span></div>
+                <p className="text-[11px] font-semibold uppercase tracking-widest text-ink-foreground/70">Your next adventure</p>
+                <p className="mt-2 font-display text-xl font-bold">A journey shaped around you</p>
+                <div className="mt-4 flex items-end justify-between"><span className="text-sm text-ink-foreground/70">Flexible dates</span><span className="font-display text-3xl font-bold">Africa</span></div>
               </div>
               <div className="float-card absolute left-0 top-36 flex items-center gap-3 rounded-full bg-card p-2 pr-5 text-foreground shadow-[var(--shadow-soft)]" style={{ ["--i" as string]: 1 }}>
                 <img src={img.culture} alt="" className="h-11 w-11 rounded-full object-cover" />
-                <div><p className="text-sm font-bold">Expert guides</p><p className="text-xs text-muted-foreground">KPSGA silver certified</p></div>
+                <div><p className="text-sm font-bold">Local perspective</p><p className="text-xs text-muted-foreground">Kenya & Tanzania</p></div>
               </div>
               <div className="float-card glass absolute bottom-0 right-6 w-72 rounded-3xl border border-ink-foreground/20 p-5" style={{ ["--i" as string]: 2 }}>
                 <p className="text-[11px] font-semibold uppercase tracking-widest text-ink-foreground/70">Itinerary · Day 03</p>
@@ -206,28 +206,22 @@ function Experiences() {
 }
 
 function Impact() {
-  const stats = [
-    { n: 3200, s: "+", l: "Safaris planned" },
-    { n: 48, s: "", l: "Expert local guides" },
-    { n: 120, s: "+", l: "Partner lodges & camps" },
-    { n: 98, s: "%", l: "Would travel again" },
+  const values = [
+    { title: "Kenya & Tanzania", body: "Explore two remarkable safari countries in one connected journey." },
+    { title: "Wildlife & coast", body: "Pair time in the bush with beaches and island experiences." },
+    { title: "Private journeys", body: "Shape the pace, route and details around your group." },
+    { title: "Personal planning", body: "Start with a conversation and build an itinerary that fits." },
   ];
   return (
     <section className="mx-auto max-w-6xl px-6 pb-28">
       <div className="rounded-[2rem] bg-sand px-6 py-20 sm:px-12">
-        <Reveal><h2 className="max-w-3xl text-4xl font-bold sm:text-5xl">Built by Africans who want more people to fall in love with the wild.</h2></Reveal>
-        <Reveal i={1} className="mt-14 grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
-          {stats.map((s, i) => (
-            <div key={s.l} className="relative">
-              <div className="flex items-center gap-3">
-                <span className="h-3 w-3 shrink-0 rounded-full bg-primary" />
-                {i < stats.length - 1 && <span className="dotted-line hidden h-1 flex-1 lg:block" />}
-              </div>
-              <p className="mt-5 font-display text-5xl font-bold"><Counter to={s.n} suffix={s.s} /></p>
-              <p className="mt-1 text-sm text-muted-foreground">{s.l}</p>
-            </div>
-          ))}
-        </Reveal>
+        <Reveal><h2 className="max-w-3xl text-4xl font-bold sm:text-5xl">Built around the places and experiences you want to discover.</h2></Reveal>
+        <div className="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+          {values.map((item, i) => <Reveal key={item.title} i={i} className="border-t border-foreground/15 pt-5">
+            <p className="font-display text-2xl font-bold">{item.title}</p>
+            <p className="mt-3 text-sm leading-6 text-muted-foreground">{item.body}</p>
+          </Reveal>)}
+        </div>
       </div>
     </section>
   );
@@ -273,22 +267,8 @@ function Confidence() {
 function Reviews() {
   return (
     <section className="mx-auto max-w-6xl px-6 py-28">
-      <SectionHead eyebrow="Reviews" title="Real travellers share honest safari stories." />
-      <div className="mt-14 grid gap-4 md:grid-cols-3">
-        {reviews.slice(0, 3).map((r, i) => (
-          <Reveal key={r.name} i={i} className="flex flex-col justify-between rounded-[1.75rem] bg-card p-8 transition duration-500 hover:-translate-y-1.5 hover:shadow-[var(--shadow-soft)]">
-            <div>
-              <p className="text-primary">★★★★★</p>
-              <p className="mt-4 text-lg font-medium">“{r.quote}”</p>
-            </div>
-            <div className="mt-8 border-t border-border pt-4">
-              <p className="font-bold">{r.name}</p>
-              <p className="text-sm text-muted-foreground">{r.trip}</p>
-            </div>
-          </Reveal>
-        ))}
-      </div>
-      <Reveal i={3} className="mt-10"><PillButton to="/reviews" variant="dark">Read all reviews</PillButton></Reveal>
+      <SectionHead eyebrow="Traveller stories" title="Your experience could inspire the next journey." body="We're preparing this space for verified guest feedback. In the meantime, speak with us directly about the kind of safari you're planning." />
+      <Reveal i={2} className="mt-10"><PillButton to="/contact" variant="dark">Talk to our team</PillButton></Reveal>
     </section>
   );
 }
