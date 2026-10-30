@@ -1,6 +1,7 @@
 import { useEffect, useState, type ReactNode } from "react";
 import { Link } from "@tanstack/react-router";
 import { toast } from "sonner";
+import { Facebook, Instagram, Youtube } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { BRAND, CONTACT } from "@/lib/site-data";
 import { PillButton, Reveal, SplitWords, Eyebrow } from "./motion";
@@ -20,7 +21,7 @@ export function Logo({ className }: { className?: string }) {
       <span className="grid h-8 w-8 place-items-center rounded-full bg-primary text-primary-foreground">
         <svg viewBox="0 0 24 24" className="h-4 w-4" fill="currentColor"><path d="M12 3c-2 4-6 5-9 5 3 1 6 3 7 7h4c1-4 4-6 7-7-3 0-7-1-9-5Zm-1 13h2v5h-2z" /></svg>
       </span>
-      Bahari Asili
+      Bahari Asili Safaris
     </Link>
   );
 }
@@ -86,9 +87,12 @@ export function Footer() {
             <Logo />
             <p className="mt-4 max-w-xs text-sm text-ink-muted">Tailor-made safaris across Kenya and Tanzania, from the Mara to Zanzibar's shores.</p>
             <div className="mt-6 flex gap-2">
-              {["IG", "FB", "YT", "TT"].map((s) => (
-                <a key={s} href="#" aria-label={s} className="grid h-10 w-10 place-items-center rounded-full border border-ink-foreground/20 text-xs font-bold transition hover:bg-primary hover:text-primary-foreground">{s}</a>
-              ))}
+              <a href="#" aria-label="Instagram" title="Instagram" className="grid h-10 w-10 place-items-center rounded-full border border-ink-foreground/20 transition hover:border-primary hover:bg-primary hover:text-primary-foreground"><Instagram aria-hidden="true" size={17} strokeWidth={1.8} /></a>
+              <a href="#" aria-label="Facebook" title="Facebook" className="grid h-10 w-10 place-items-center rounded-full border border-ink-foreground/20 transition hover:border-primary hover:bg-primary hover:text-primary-foreground"><Facebook aria-hidden="true" size={17} strokeWidth={1.8} /></a>
+              <a href="#" aria-label="YouTube" title="YouTube" className="grid h-10 w-10 place-items-center rounded-full border border-ink-foreground/20 transition hover:border-primary hover:bg-primary hover:text-primary-foreground"><Youtube aria-hidden="true" size={18} strokeWidth={1.8} /></a>
+              <a href="#" aria-label="TikTok" title="TikTok" className="grid h-10 w-10 place-items-center rounded-full border border-ink-foreground/20 transition hover:border-primary hover:bg-primary hover:text-primary-foreground">
+                <svg aria-hidden="true" viewBox="0 0 24 24" className="h-[17px] w-[17px]" fill="currentColor"><path d="M19.6 7.2a6.7 6.7 0 0 1-4.1-1.4v8.1a5.9 5.9 0 1 1-5.1-5.8v3.1a2.9 2.9 0 1 0 2 2.8V2.5h3.1c.2 2 1.8 3.6 4.1 3.8v.9Z" /></svg>
+              </a>
             </div>
           </div>
           <div>
@@ -119,7 +123,12 @@ export function Footer() {
             </form>
           </div>
         </div>
-        <div className="mt-16 font-display text-[16vw] font-bold leading-none tracking-tighter text-ink-foreground/10 md:text-[11rem]">Bahari Asili</div>
+        <div className="footer-marquee mt-16" aria-label="Bahari Asili Safaris">
+          <div className="footer-marquee-track" aria-hidden="true">
+            <span>Bahari Asili Safaris</span>
+            <span>Bahari Asili Safaris</span>
+          </div>
+        </div>
         <div className="mt-6 flex flex-col justify-between gap-2 border-t border-ink-foreground/10 pt-6 text-xs text-ink-muted sm:flex-row">
           <span>© 2026 {BRAND}</span>
           <span>Safaris · Tours · Lodges · Support</span>
