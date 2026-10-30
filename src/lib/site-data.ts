@@ -11,8 +11,9 @@ export const img = { hero, jeep, lodge, beach, culture, migration, crater, ambos
 
 export const BRAND = "Bahari Asili Safaris";
 export const CONTACT = {
-  email: "hello@bahariasilisafaris.com",
-  phone: "+254 700 000 000",
+  email: "bahariasilisafaris@gmail.com",
+  phone: "+254 745 043 121",
+  whatsapp: "+254745043121",
   address: "Westlands, Nairobi, Kenya",
 };
 
