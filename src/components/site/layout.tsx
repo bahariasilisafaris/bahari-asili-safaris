@@ -233,6 +233,3 @@ export function FloatingWhatsApp() {
     </a>
   );
 }
-@media (hover: none) {
-  .group.fixed.bottom-\\[max\\(1\\.25rem\\,env\\(safe-area-inset-bottom\\)\\)\\].right-5 > span:first-child { display: none; }
-}
