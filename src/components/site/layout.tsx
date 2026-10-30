@@ -32,7 +32,7 @@ export function Nav() {
  const [mobileExplore,setMobileExplore]=useState(false);
  return <>
   <div className="ba-utility">
-   <div><a href={`tel:${CONTACT.whatsapp}}>{CONTACT.phone}</a><span>Kenya & Tanzania safari specialists</span></div>
+   <div><a href={"tel:" + CONTACT.whatsapp}>{CONTACT.phone}</a><span>Kenya & Tanzania safari specialists</span></div>
    <div><Link to="/contact">Schedule a consultation</Link><Link to="/contact" className="ba-utility-quote">Get a free quote</Link><span className="ba-language">EN <span aria-hidden="true">⌄</span></span></div>
   </div>
   <header className="ba-header">
