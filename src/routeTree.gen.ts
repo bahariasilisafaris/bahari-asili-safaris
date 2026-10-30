@@ -10,33 +10,180 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as DestinationsRouteImport } from './routes/destinations'
+import { Route as EnquireRouteImport } from './routes/enquire'
+import { Route as LodgesRouteImport } from './routes/lodges'
+import { Route as PlanRouteImport } from './routes/plan'
+import { Route as ReviewsRouteImport } from './routes/reviews'
+import { Route as SafarisRouteImport } from './routes/safaris'
+import { Route as ToursRouteImport } from './routes/tours'
+import { Route as ItinerariesIndexRouteImport } from './routes/itineraries.index'
+import { Route as ItinerariesSlugRouteImport } from './routes/itineraries.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DestinationsRoute = DestinationsRouteImport.update({
+  id: '/destinations',
+  path: '/destinations',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EnquireRoute = EnquireRouteImport.update({
+  id: '/enquire',
+  path: '/enquire',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LodgesRoute = LodgesRouteImport.update({
+  id: '/lodges',
+  path: '/lodges',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PlanRoute = PlanRouteImport.update({
+  id: '/plan',
+  path: '/plan',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ReviewsRoute = ReviewsRouteImport.update({
+  id: '/reviews',
+  path: '/reviews',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SafarisRoute = SafarisRouteImport.update({
+  id: '/safaris',
+  path: '/safaris',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ToursRoute = ToursRouteImport.update({
+  id: '/tours',
+  path: '/tours',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ItinerariesIndexRoute = ItinerariesIndexRouteImport.update({
+  id: '/itineraries/',
+  path: '/itineraries/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ItinerariesSlugRoute = ItinerariesSlugRouteImport.update({
+  id: '/itineraries/$slug',
+  path: '/itineraries/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
+  '/destinations': typeof DestinationsRoute
+  '/enquire': typeof EnquireRoute
+  '/lodges': typeof LodgesRoute
+  '/plan': typeof PlanRoute
+  '/reviews': typeof ReviewsRoute
+  '/safaris': typeof SafarisRoute
+  '/tours': typeof ToursRoute
+  '/itineraries/$slug': typeof ItinerariesSlugRoute
+  '/itineraries/': typeof ItinerariesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
+  '/destinations': typeof DestinationsRoute
+  '/enquire': typeof EnquireRoute
+  '/lodges': typeof LodgesRoute
+  '/plan': typeof PlanRoute
+  '/reviews': typeof ReviewsRoute
+  '/safaris': typeof SafarisRoute
+  '/tours': typeof ToursRoute
+  '/itineraries/$slug': typeof ItinerariesSlugRoute
+  '/itineraries': typeof ItinerariesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
+  '/destinations': typeof DestinationsRoute
+  '/enquire': typeof EnquireRoute
+  '/lodges': typeof LodgesRoute
+  '/plan': typeof PlanRoute
+  '/reviews': typeof ReviewsRoute
+  '/safaris': typeof SafarisRoute
+  '/tours': typeof ToursRoute
+  '/itineraries/$slug': typeof ItinerariesSlugRoute
+  '/itineraries/': typeof ItinerariesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/destinations'
+    | '/enquire'
+    | '/lodges'
+    | '/plan'
+    | '/reviews'
+    | '/safaris'
+    | '/tours'
+    | '/itineraries/$slug'
+    | '/itineraries/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/destinations'
+    | '/enquire'
+    | '/lodges'
+    | '/plan'
+    | '/reviews'
+    | '/safaris'
+    | '/tours'
+    | '/itineraries/$slug'
+    | '/itineraries'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/destinations'
+    | '/enquire'
+    | '/lodges'
+    | '/plan'
+    | '/reviews'
+    | '/safaris'
+    | '/tours'
+    | '/itineraries/$slug'
+    | '/itineraries/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
+  ContactRoute: typeof ContactRoute
+  DestinationsRoute: typeof DestinationsRoute
+  EnquireRoute: typeof EnquireRoute
+  LodgesRoute: typeof LodgesRoute
+  PlanRoute: typeof PlanRoute
+  ReviewsRoute: typeof ReviewsRoute
+  SafarisRoute: typeof SafarisRoute
+  ToursRoute: typeof ToursRoute
+  ItinerariesSlugRoute: typeof ItinerariesSlugRoute
+  ItinerariesIndexRoute: typeof ItinerariesIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +195,99 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/destinations': {
+      id: '/destinations'
+      path: '/destinations'
+      fullPath: '/destinations'
+      preLoaderRoute: typeof DestinationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/enquire': {
+      id: '/enquire'
+      path: '/enquire'
+      fullPath: '/enquire'
+      preLoaderRoute: typeof EnquireRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/lodges': {
+      id: '/lodges'
+      path: '/lodges'
+      fullPath: '/lodges'
+      preLoaderRoute: typeof LodgesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/plan': {
+      id: '/plan'
+      path: '/plan'
+      fullPath: '/plan'
+      preLoaderRoute: typeof PlanRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reviews': {
+      id: '/reviews'
+      path: '/reviews'
+      fullPath: '/reviews'
+      preLoaderRoute: typeof ReviewsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/safaris': {
+      id: '/safaris'
+      path: '/safaris'
+      fullPath: '/safaris'
+      preLoaderRoute: typeof SafarisRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tours': {
+      id: '/tours'
+      path: '/tours'
+      fullPath: '/tours'
+      preLoaderRoute: typeof ToursRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/itineraries/': {
+      id: '/itineraries/'
+      path: '/itineraries'
+      fullPath: '/itineraries/'
+      preLoaderRoute: typeof ItinerariesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/itineraries/$slug': {
+      id: '/itineraries/$slug'
+      path: '/itineraries/$slug'
+      fullPath: '/itineraries/$slug'
+      preLoaderRoute: typeof ItinerariesSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
+  ContactRoute: ContactRoute,
+  DestinationsRoute: DestinationsRoute,
+  EnquireRoute: EnquireRoute,
+  LodgesRoute: LodgesRoute,
+  PlanRoute: PlanRoute,
+  ReviewsRoute: ReviewsRoute,
+  SafarisRoute: SafarisRoute,
+  ToursRoute: ToursRoute,
+  ItinerariesSlugRoute: ItinerariesSlugRoute,
+  ItinerariesIndexRoute: ItinerariesIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
