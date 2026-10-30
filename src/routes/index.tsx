@@ -33,64 +33,84 @@ function Home() {
 }
 
 function Hero() {
-  const pins = [
-    { x: 120, y: 330, label: "Nairobi", d: "Day 1" },
-    { x: 360, y: 210, label: "Maasai Mara", d: "Day 3" },
-    { x: 620, y: 290, label: "Serengeti", d: "Day 5" },
-    { x: 880, y: 150, label: "Zanzibar", d: "Day 8" },
-  ];
+  const [motionAllowed, setMotionAllowed] = useState(false);
+
+  useEffect(() => {
+    const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const syncPreference = () => setMotionAllowed(!preference.matches);
+    syncPreference();
+    preference.addEventListener("change", syncPreference);
+    return () => preference.removeEventListener("change", syncPreference);
+  }, []);
+
+  const sourceBase = "https://raw.githubusercontent.com/Sheddymae/bahari-asili-safaris/922fffd454c0b430a5ee4cb11591a8b4c9519796";
+  const poster = sourceBase + "/public/images/hero/video-poster.jpg";
+
   return (
-    <section className="p-2 sm:p-3">
-      <div className="relative min-h-[100svh] overflow-hidden rounded-[2rem] text-ink-foreground">
-        <img src={img.hero} alt="Elephants crossing the savannah at sunset" width={1920} height={1088} className="kenburns absolute inset-0 h-full w-full object-cover" />
-        <div className="scrim absolute inset-0" />
+    <section id="home" className="p-2 sm:p-3">
+      <div className="group relative isolate min-h-[88svh] overflow-hidden rounded-[2rem] bg-ink text-ink-foreground sm:min-h-[94svh]">
+        <img
+          src={poster}
+          alt="Kenyan safari landscape, the opening view of a Bahari Asili journey"
+          fetchPriority="high"
+          className="absolute inset-0 h-full w-full object-cover object-center"
+        />
+        {motionAllowed && (
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            poster={poster}
+            aria-hidden="true"
+            onError={(event) => {
+              event.currentTarget.style.display = "none";
+            }}
+            className="absolute inset-0 h-full w-full object-cover object-center"
+          >
+            <source src={sourceBase + "/public/videos/hero-drone-mobile.mp4"} media="(max-width: 767px)" type="video/mp4" />
+            <source src={sourceBase + "/public/videos/hero-drone-desktop.mp4"} type="video/mp4" />
+          </video>
+        )}
+        <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/20 to-black/75" />
+        <div aria-hidden="true" className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_15%,rgba(0,0,0,0.32)_100%)]" />
 
-        <svg viewBox="0 0 1000 420" className="pointer-events-none absolute inset-x-0 top-[22%] hidden w-full opacity-90 md:block" fill="none">
-          <path d="M120 330 C 220 300, 260 200, 360 210 S 520 330, 620 290 S 800 120, 880 150" stroke="currentColor" strokeWidth="2" strokeDasharray="0" className="route-draw" strokeLinecap="round" />
-          {pins.map((p, i) => (
-            <g key={p.label} className="pin-pop" style={{ ["--i" as string]: i }}>
-              <circle cx={p.x} cy={p.y} r="16" className="fill-primary/30" />
-              <circle cx={p.x} cy={p.y} r="7" className="fill-primary stroke-ink-foreground" strokeWidth="2" />
-              <rect x={p.x - 46} y={p.y - 52} width="92" height="26" rx="13" className="fill-ink/70" />
-              <text x={p.x} y={p.y - 35} textAnchor="middle" className="fill-ink-foreground text-[11px] font-semibold">{p.d} · {p.label}</text>
-            </g>
-          ))}
-        </svg>
-
-        <div className="relative mx-auto flex min-h-[100svh] max-w-6xl flex-col justify-end px-6 pb-12 pt-36">
-          <div className="grid items-end gap-10 lg:grid-cols-[1.4fr_1fr]">
+        <div className="relative mx-auto flex min-h-[88svh] max-w-6xl flex-col justify-end px-6 pb-10 pt-36 sm:min-h-[94svh] sm:pb-14 lg:pb-16">
+          <div className="grid items-end gap-10 lg:grid-cols-[1.35fr_0.65fr]">
             <div>
               <Reveal><Eyebrow>Kenya · Tanzania · Zanzibar</Eyebrow></Reveal>
-              <h1 className="mt-6 max-w-4xl text-5xl font-extrabold leading-[1.12] tracking-[-0.045em] sm:text-7xl lg:text-8xl">
+              <h1 className="mt-6 max-w-4xl text-5xl font-extrabold leading-[1.04] tracking-[-0.045em] sm:text-7xl lg:text-8xl">
                 <SplitWords text="Discover Africa." className="block" />
-                <br />
-                <SplitWords text="Your journey starts here." className="block text-ink-foreground/75" />
+                <SplitWords text="Your journey starts here." className="mt-2 block text-ink-foreground/75" />
               </h1>
               <Reveal i={6}>
-                <p className="mt-6 max-w-lg text-lg text-ink-foreground/80">Tailor-made safaris across Kenya and Tanzania. From your first game drive to your last sunset, everything in one place.</p>
+                <p className="mt-6 max-w-xl text-base leading-7 text-white/90 sm:text-lg">
+                  Tailor-made safaris across Kenya and Tanzania. From your first game drive to your last coastal sunset, every detail starts with you.
+                </p>
               </Reveal>
-              <Reveal i={7} className="mt-8 flex flex-wrap items-center gap-4">
+              <Reveal i={7} className="mt-8 flex flex-wrap items-center gap-3">
                 <PillButton to="/itineraries">Explore itineraries</PillButton>
-                <span className="text-sm text-ink-foreground/70">Free trip planning</span>
+                <PillButton to="/contact" variant="dark">Plan your safari</PillButton>
+                <span className="text-sm text-white/75">Personal trip planning · No obligation</span>
               </Reveal>
             </div>
-            <div className="relative hidden h-[360px] lg:block">
-              <div className="float-card glass absolute right-0 top-0 w-64 rounded-3xl border border-ink-foreground/20 p-5" style={{ ["--i" as string]: 0 }}>
-                <p className="text-[11px] font-semibold uppercase tracking-widest text-ink-foreground/70">Your next adventure</p>
-                <p className="mt-2 font-display text-xl font-bold">A journey shaped around you</p>
-                <div className="mt-4 flex items-end justify-between"><span className="text-sm text-ink-foreground/70">Flexible dates</span><span className="font-display text-3xl font-bold">Africa</span></div>
+
+            <div className="relative hidden h-[330px] lg:block">
+              <div className="glass float-card absolute right-0 top-0 w-64 rounded-3xl border border-white/25 p-5" style={{ ["--i" as string]: 0 }}>
+                <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-white/70">The Bahari Asili difference</p>
+                <p className="mt-3 font-display text-2xl font-bold leading-tight">Wild places. Thoughtful journeys.</p>
+                <p className="mt-3 text-sm leading-6 text-white/75">Local insight, carefully paced itineraries and room to explore.</p>
               </div>
-              <div className="float-card absolute left-0 top-36 flex items-center gap-3 rounded-full bg-card p-2 pr-5 text-foreground shadow-[var(--shadow-soft)]" style={{ ["--i" as string]: 1 }}>
-                <img src={img.culture} alt="" className="h-11 w-11 rounded-full object-cover" />
-                <div><p className="text-sm font-bold">Local perspective</p><p className="text-xs text-muted-foreground">Kenya & Tanzania</p></div>
-              </div>
-              <div className="float-card glass absolute bottom-0 right-6 w-72 rounded-3xl border border-ink-foreground/20 p-5" style={{ ["--i" as string]: 2 }}>
-                <p className="text-[11px] font-semibold uppercase tracking-widest text-ink-foreground/70">Itinerary · Day 03</p>
-                <p className="mt-1 font-display text-lg font-bold">Maasai Mara · 1,510 km²</p>
-                <p className="mt-2 text-sm text-ink-foreground/75">Morning drive along the Mara River, then a bush breakfast under the acacias.</p>
+              <div className="float-card absolute bottom-0 left-0 flex items-center gap-3 rounded-full border border-white/20 bg-white p-2 pr-5 text-foreground shadow-[var(--shadow-soft)]" style={{ ["--i" as string]: 1 }}>
+                <img src={img.culture} alt="A glimpse of local culture in East Africa" className="h-12 w-12 rounded-full object-cover" />
+                <div><p className="text-sm font-bold">Safari & culture</p><p className="text-xs text-muted-foreground">Kenya and Tanzania</p></div>
               </div>
             </div>
           </div>
+        </div>
+        <div className="pointer-events-none absolute bottom-5 right-7 hidden items-center gap-3 text-[10px] font-semibold uppercase tracking-[0.2em] text-white/65 sm:flex">
+          <span className="h-px w-10 bg-white/50" /> Scroll to discover
         </div>
       </div>
     </section>
