@@ -159,8 +159,8 @@ function Hero() {
             <source src={sourceBase + "/public/videos/hero-drone-desktop.mp4"} type="video/mp4" />
           </video>
         )}
-        <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/20 to-black/75" />
-        <div aria-hidden="true" className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_15%,rgba(0,0,0,0.32)_100%)]" />
+        <div aria-hidden="true" className="absolute inset-0 bg-black/45" />
+        
 
         <div className="relative mx-auto flex min-h-[88svh] max-w-6xl flex-col justify-end px-6 pb-10 pt-36 sm:min-h-[94svh] sm:pb-14 lg:pb-16">
           <div className="grid items-end gap-10 lg:grid-cols-[1.35fr_0.65fr]">
@@ -422,7 +422,7 @@ function BuildSafariPromo() {
           loading="lazy"
           className="absolute inset-0 -z-20 h-full w-full object-cover"
         />
-        <div aria-hidden="true" className="absolute inset-0 -z-10 bg-gradient-to-r from-black/90 via-black/70 to-black/25" />
+        <div aria-hidden="true" className="absolute inset-0 -z-10 bg-black/55" />
         <div className="mx-auto max-w-6xl px-6 py-24 sm:py-28 lg:py-32">
           <Reveal className="max-w-2xl">
             <Eyebrow>Made for you</Eyebrow>

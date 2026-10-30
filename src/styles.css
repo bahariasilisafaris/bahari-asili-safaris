@@ -104,7 +104,7 @@
   --sidebar-ring: oklch(0.704 0.04 256.788);
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   --shadow-soft: 0 30px 60px -30px rgb(16 75 89 / 35%);
-  --scrim: linear-gradient(180deg, rgb(16 35 40 / 38%) 0%, rgb(16 35 40 / 8%) 35%, rgb(16 35 40 / 78%) 100%);
+  --scrim: rgb(12 34 38 / 62%);
 }
 
 @layer base {
@@ -227,7 +227,7 @@
 }
 
 @utility dotted-line {
-  background-image: radial-gradient(circle, var(--color-muted-foreground) 1.2px, transparent 1.4px);
+  background-image: none; background-color: var(--color-border); height: 1px;
   background-size: 10px 4px;
   background-repeat: repeat-x;
   background-position: left center;
@@ -244,7 +244,7 @@
 }
 
 @utility glass {
-  background: rgb(16 75 89 / 92%);
+  background: #104B59;
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
 }
@@ -341,4 +341,24 @@
   .footer-marquee-track span:nth-child(2) {
     display: none;
   }
+}
+
+
+/* Clean, consistent brand finish across every route. */
+:root {
+  --background: #FFFFFF;
+  --foreground: #1F2937;
+  --card: #FFFFFF;
+  --muted: #F5F1E8;
+  --muted-foreground: #52616B;
+  --border: #D9E1E3;
+  --primary: #167D95;
+  --accent: #FF7418;
+  --ink: #104B59;
+  --shadow-soft: 0 16px 40px -28px rgb(16 75 89 / 28%);
+}
+body { background: #FFFFFF; }
+[class*="bg-gradient-to-"] {
+  background-image: none !important;
+  background-color: rgb(12 34 38 / 58%);
 }
