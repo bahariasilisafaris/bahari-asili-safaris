@@ -108,7 +108,7 @@ export function Footer() {
             <div className="mt-6 space-y-1 text-sm text-ink-muted">
               <a href={`tel:${CONTACT.whatsapp}`} className="block transition hover:text-primary">{CONTACT.phone}</a>
               <a href={`mailto:${CONTACT.email}`} className="block transition hover:text-primary">{CONTACT.email}</a>
-              <a href={`https://wa.me/${CONTACT.whatsapp.replace(/\\D/g, "")}`} target="_blank" rel="noreferrer" className="inline-block transition hover:text-primary">Chat on WhatsApp ↗</a>
+              <a href={`https://wa.me/${CONTACT.whatsapp}`} target="_blank" rel="noreferrer" className="inline-block transition hover:text-primary">Chat on WhatsApp ↗</a>
               <p>{CONTACT.address}</p>
             </div>
           </div>
@@ -198,7 +198,7 @@ export function EnquiryForm({ defaultTrip = "" }: { defaultTrip?: string }) {
         `Travel month: ${data.get("month") || "Flexible"}`,
         `Travellers: ${data.get("travellers")}`,
         `Trip details: ${data.get("details") || "Not provided"}`,
-      ].join("\\n");
+      ].join("\n");
       window.open(`https://wa.me/${CONTACT.whatsapp}?text=${encodeURIComponent(message)}`, "_blank", "noopener,noreferrer");
       setSent(true);
     }} className="grid gap-4 rounded-[2rem] bg-card p-6 sm:grid-cols-2 sm:p-10">
