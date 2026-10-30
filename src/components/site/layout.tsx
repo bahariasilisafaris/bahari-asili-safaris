@@ -1,18 +1,17 @@
 import { useEffect, useState, type ReactNode } from "react";
 import { Link } from "@tanstack/react-router";
 import { toast } from "sonner";
-import { Facebook, Instagram, Youtube } from "lucide-react";
+import { Facebook, Instagram, Youtube, ArrowRight, Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { BRAND, CONTACT } from "@/lib/site-data";
 import { PillButton, Reveal, SplitWords, Eyebrow } from "./motion";
 
 const NAV = [
-  { to: "/safaris", label: "Safaris" },
-  { to: "/tours", label: "Tours" },
   { to: "/destinations", label: "Destinations" },
-  { to: "/itineraries", label: "Itineraries" },
+  { to: "/itineraries", label: "Safari packages" },
+  { to: "/tours", label: "Tours" },
   { to: "/lodges", label: "Lodges" },
-  { to: "/about", label: "About" },
+  { to: "/about", label: "About us" },
 ] as const;
 
 export function Logo({ className }: { className?: string }) {
@@ -28,107 +27,23 @@ export function Logo({ className }: { className?: string }) {
 }
 
 export function Nav() {
-  const [open, setOpen] = useState(false);
-  return (
-    <header className="sticky top-0 z-50 border-b border-border bg-white px-4">
-      <nav className="mx-auto flex max-w-7xl items-center justify-between py-3">
-        <Logo />
-        <ul className="hidden items-center gap-1 lg:flex">
-          {NAV.map((n) => (
-            <li key={n.to}>
-              <Link to={n.to} className="rounded-full px-4 py-2 text-sm font-semibold text-foreground/80 transition-colors hover:text-primary" activeProps={{ className: "text-primary" }}>
-                {n.label}
-              </Link>
-            </li>
-          ))}
-        </ul>
-        <div className="flex items-center gap-2">
-          <Link to="/contact" className="hidden rounded-full px-4 py-2 text-sm font-semibold text-foreground hover:text-primary md:block">Contact</Link>
-          <PillButton to="/enquire" className="hidden sm:inline-flex">Enquire</PillButton>
-          <button aria-label={open ? "Close menu" : "Open menu"} aria-expanded={open} onClick={() => setOpen(!open)} className="grid h-11 w-11 place-items-center rounded-full bg-primary text-primary-foreground lg:hidden">
-            <span className="text-lg">{open ? "×" : "≡"}</span>
-          </button>
-        </div>
-      </nav>
-      {open && (
-        <div className="mx-auto max-w-7xl border-t border-border bg-white py-3 text-foreground lg:hidden">
-          {[...NAV, { to: "/plan", label: "Plan your trip" }, { to: "/reviews", label: "Reviews" }, { to: "/contact", label: "Contact" }, { to: "/enquire", label: "Enquire" }].map((n) => (
-            <Link key={n.to} to={n.to} onClick={() => setOpen(false)} className="block rounded-xl px-4 py-3 font-medium hover:bg-sand">
-              {n.label}
-            </Link>
-          ))}
-        </div>
-      )}
-    </header>
-  );
+ const [open,setOpen]=useState(false);
+ return <>
+  <div className="ba-utility"><div><a href={`tel:${CONTACT.whatsapp}`}>{CONTACT.phone}</a><span>Kenya & Tanzania safari specialists</span></div><div><Link to="/contact">Schedule a consultation</Link><Link to="/contact" className="ba-utility-quote">Get free quote</Link><span className="ba-language">EN <span aria-hidden="true">⌄</span></span></div></div>
+  <header className="ba-header"><nav className="ba-nav"><Logo/><ul className="ba-nav-links">
+   <li><Link to="/">Home</Link></li><li className="ba-nav-dropdown"><Link to="/destinations">Destinations <span>⌄</span></Link><div><Link to="/destinations">Maasai Mara</Link><Link to="/destinations">Amboseli</Link><Link to="/destinations">Serengeti</Link><Link to="/destinations">Zanzibar</Link><Link to="/destinations">All destinations</Link></div></li>
+   <li><Link to="/itineraries">Kenya safaris</Link></li><li><Link to="/itineraries">Tanzania safaris</Link></li><li><Link to="/itineraries">Tours & packages</Link></li><li><Link to="/about">Travel guides</Link></li><li><Link to="/about">About us</Link></li><li><Link to="/contact">Contact</Link></li>
+  </ul><Link to="/contact" className="ba-nav-cta">Plan your safari <ArrowRight size={15}/></Link><button aria-label={open?"Close menu":"Open menu"} aria-expanded={open} onClick={()=>setOpen(!open)} className="ba-menu-button">{open?<X/>:<Menu/>}</button></nav>
+  {open&&<div className="ba-mobile-menu">{[{to:"/",label:"Home"},{to:"/destinations",label:"Destinations"},{to:"/itineraries",label:"Kenya safaris"},{to:"/itineraries",label:"Tanzania safaris"},{to:"/itineraries",label:"Tours & packages"},{to:"/about",label:"Travel guides"},{to:"/about",label:"About us"},{to:"/contact",label:"Contact"}].map((item,i)=><Link key={i} to={item.to} onClick={()=>setOpen(false)}>{item.label}<ArrowRight size={15}/></Link>)}</div>}</header>
+ </>;
 }
 
 export function Footer() {
-  return (
-    <footer className="bg-ink px-4 pb-8 pt-20 text-ink-foreground">
-      <div className="mx-auto max-w-6xl">
-        <div className="grid gap-12 md:grid-cols-[1.4fr_1fr_1fr_1.4fr]">
-          <div>
-            <Logo />
-            <p className="mt-4 max-w-xs text-sm text-ink-muted">Tailor-made safaris across Kenya and Tanzania, from the Mara to Zanzibar's shores.</p>
-            <div className="mt-6 flex gap-2">
-              <a href="https://www.instagram.com/bahariasilisafaris/" target="_blank" rel="noreferrer" aria-label="Instagram" title="Instagram" className="grid h-10 w-10 place-items-center rounded-full border border-ink-foreground/20 transition hover:border-primary hover:bg-primary hover:text-primary-foreground"><Instagram aria-hidden="true" size={17} strokeWidth={1.8} /></a>
-              <a href="https://www.facebook.com/bahariasilisafaris/" target="_blank" rel="noreferrer" aria-label="Facebook" title="Facebook" className="grid h-10 w-10 place-items-center rounded-full border border-ink-foreground/20 transition hover:border-primary hover:bg-primary hover:text-primary-foreground"><Facebook aria-hidden="true" size={17} strokeWidth={1.8} /></a>
-            </div>
-          </div>
-          <div>
-            <h4 className="text-sm font-semibold text-ink-muted">Explore</h4>
-            <ul className="mt-4 space-y-2 text-sm">
-              {NAV.map((n) => (<li key={n.to}><Link to={n.to} className="hover:text-primary">{n.label}</Link></li>))}
-            </ul>
-          </div>
-          <div>
-            <h4 className="text-sm font-semibold text-ink-muted">Company</h4>
-            <ul className="mt-4 space-y-2 text-sm">
-              <li><Link to="/plan" className="hover:text-primary">Plan your trip</Link></li>
-              <li><Link to="/reviews" className="hover:text-primary">Reviews</Link></li>
-              <li><Link to="/contact" className="hover:text-primary">Contact</Link></li>
-              <li><Link to="/enquire" className="hover:text-primary">Enquire</Link></li>
-            </ul>
-            <div className="mt-6 space-y-1 text-sm text-ink-muted">
-              <a href={`tel:${CONTACT.whatsapp}`} className="block transition hover:text-primary">{CONTACT.phone}</a>
-              <a href={`mailto:${CONTACT.email}`} className="block transition hover:text-primary">{CONTACT.email}</a>
-              <a href={`https://wa.me/${CONTACT.whatsapp}`} target="_blank" rel="noreferrer" className="inline-block transition hover:text-primary">Chat on WhatsApp ↗</a>
-              <p>{CONTACT.address}</p>
-            </div>
-          </div>
-          <div>
-            <h4 className="text-sm font-semibold text-ink-muted">Field notes</h4>
-            <p className="mt-4 text-sm text-ink-muted">Seasonal sightings and new itineraries, once a month.</p>
-            <form
-              onSubmit={(e) => {
-                e.preventDefault();
-                const email = new FormData(e.currentTarget).get("email");
-                const subject = encodeURIComponent("Please add me to Bahari Asili Safaris field notes");
-                const body = encodeURIComponent(`Please send occasional safari updates to: ${email}`);
-                window.location.href = `mailto:${CONTACT.email}?subject=${subject}&body=${body}`;
-                toast.info("Your email app will open so you can request updates.");
-              }}
-              className="mt-4 flex rounded-full bg-ink-foreground/10 p-1"
-            >
-              <input name="email" required type="email" placeholder="Email address" className="min-w-0 flex-1 bg-transparent px-4 text-sm outline-none placeholder:text-ink-muted" />
-              <button type="submit" className="rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground">Request</button>
-            </form>
-          </div>
-        </div>
-        <div className="footer-marquee mt-16" aria-label="Bahari Asili Safaris">
-          <div className="footer-marquee-track" aria-hidden="true">
-            <span>Bahari Asili Safaris</span>
-            <span>Bahari Asili Safaris</span>
-          </div>
-        </div>
-        <div className="mt-6 flex flex-col justify-between gap-2 border-t border-ink-foreground/10 pt-6 text-xs text-ink-muted sm:flex-row">
-          <span>© 2026 {BRAND}</span>
-          <span>Safaris · Tours · Lodges · Support</span>
-        </div>
-      </div>
-    </footer>
-  );
+ return <footer className="ba-footer"><div className="ba-footer-grid"><div><Logo/><p className="mt-5 max-w-xs text-sm leading-7 text-white/65">Thoughtfully planned safaris across Kenya and Tanzania. Discover East Africa at your own pace.</p><p className="mt-5 text-xs uppercase tracking-widest text-white/45">Kenya · Tanzania · Zanzibar</p></div>
+ <div><h3>Explore</h3><Link to="/destinations">Destinations</Link><Link to="/itineraries">Safari packages</Link><Link to="/tours">Tours & experiences</Link><Link to="/lodges">Safari lodges</Link></div>
+ <div><h3>Bahari Asili</h3><Link to="/about">About us</Link><Link to="/contact">Contact</Link><Link to="/reviews">Guest feedback</Link><Link to="/contact">FAQs</Link></div>
+ <div><h3>Get in touch</h3><a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a><a href={`tel:${CONTACT.whatsapp}`}>{CONTACT.phone}</a><a href={`https://wa.me/${CONTACT.whatsapp}`} target="_blank" rel="noreferrer">WhatsApp us ↗</a><p>{CONTACT.address}</p><p className="mt-4 text-xs leading-6 text-white/55">For enquiries and trip support, contact our team directly.</p></div></div>
+ <div className="ba-footer-bottom"><span>© {new Date().getFullYear()} {BRAND}. All rights reserved.</span><span>Made for meaningful journeys across East Africa.</span></div></footer>;
 }
 
 export function PageHero({ eyebrow, title, body, image, children }: { eyebrow: string; title: string; body?: string; image: string; children?: ReactNode }) {
@@ -159,44 +74,25 @@ export function SectionHead({ eyebrow, title, body, dark }: { eyebrow: string; t
 }
 
 export function EnquiryForm({ defaultTrip = "" }: { defaultTrip?: string }) {
-  const [sent, setSent] = useState(false);
-  if (sent)
-    return (
-      <div className="rounded-[2rem] bg-card p-10 text-center">
-        <h3 className="text-3xl font-bold">Your enquiry is ready.</h3>
-        <p className="mt-3 text-muted-foreground">WhatsApp should have opened with your trip details. Press Send there to deliver your enquiry to our team.</p>
-        <a href={`https://wa.me/${CONTACT.whatsapp}`} target="_blank" rel="noreferrer" className="mt-6 inline-flex rounded-full bg-primary px-6 py-3 font-semibold text-primary-foreground">Open WhatsApp ↗</a>
-      </div>
-    );
-  const field = "w-full rounded-2xl border border-input bg-background px-4 py-3 text-sm outline-none transition focus:border-primary";
-  return (
-    <form onSubmit={(e) => {
-      e.preventDefault();
-      const form = e.currentTarget;
-      const data = new FormData(form);
-      const message = [
-        "Hello Bahari Asili Safaris, I'd like to enquire about a trip.",
-        `Name: ${data.get("name")}`,
-        `Email: ${data.get("email")}`,
-        `Phone / WhatsApp: ${data.get("phone") || "Not provided"}`,
-        `Trip of interest: ${data.get("trip") || "Open to suggestions"}`,
-        `Travel month: ${data.get("month") || "Flexible"}`,
-        `Travellers: ${data.get("travellers")}`,
-        `Trip details: ${data.get("details") || "Not provided"}`,
-      ].join("\n");
-      window.open(`https://wa.me/${CONTACT.whatsapp}?text=${encodeURIComponent(message)}`, "_blank", "noopener,noreferrer");
-      setSent(true);
-    }} className="grid gap-4 rounded-[2rem] bg-card p-6 sm:grid-cols-2 sm:p-10">
-      <input name="name" required placeholder="Full name" autoComplete="name" className={field} />
-      <input name="email" required type="email" placeholder="Email" autoComplete="email" className={field} />
-      <input name="phone" placeholder="Phone / WhatsApp" autoComplete="tel" className={field} />
-      <input name="trip" placeholder="Trip of interest" defaultValue={defaultTrip} className={field} />
-      <input name="month" type="month" aria-label="Travel month" className={field} />
-      <select name="travellers" className={field} defaultValue="2"><option value="1">1 traveller</option><option value="2">2 travellers</option><option value="3–4">3–4 travellers</option><option value="5+">5+ travellers</option></select>
-      <textarea name="details" rows={4} placeholder="Tell us about your dream safari" className={cn(field, "sm:col-span-2")} />
-      <button type="submit" className="rounded-full bg-primary px-6 py-4 font-semibold text-primary-foreground transition hover:-translate-y-0.5 sm:col-span-2">Continue to WhatsApp ↗</button>
-    </form>
-  );
+ const [sent,setSent]=useState(false);
+ if(sent) return <div className="rounded-xl bg-card p-8 text-center"><h3 className="text-2xl font-bold">Your enquiry is ready.</h3><p className="mt-3 text-sm text-muted-foreground">WhatsApp should have opened with your trip details. Press Send there to deliver your enquiry.</p><a href={`https://wa.me/${CONTACT.whatsapp}`} target="_blank" rel="noreferrer" className="mt-5 inline-flex rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground">Open WhatsApp ↗</a></div>;
+ const field="w-full rounded-md border border-input bg-background px-4 py-3 text-sm outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/15";
+ return <form onSubmit={e=>{e.preventDefault();const data=new FormData(e.currentTarget);const message=[
+ "Hello Bahari Asili Safaris, I'd like to enquire about a safari.",
+ `Name: ${data.get("name")}`,`Email: ${data.get("email")}`,`Phone / WhatsApp: ${data.get("phone")}`,
+ `Destination: ${data.get("destination")}`,`Travel dates: ${data.get("dates")||"Flexible"}`,
+ `Travellers: ${data.get("travellers")}`,`Budget: ${data.get("budget")||"To discuss"}`,`Message: ${data.get("details")||"Please contact me to discuss"}`
+ ].join("\n");window.open(`https://wa.me/${CONTACT.whatsapp}?text=${encodeURIComponent(message)}`,"_blank","noopener,noreferrer");setSent(true);}} className="grid gap-3 sm:grid-cols-2">
+ <input name="name" required placeholder="Full name" autoComplete="name" className={field}/>
+ <input name="email" required type="email" placeholder="Email address" autoComplete="email" className={field}/>
+ <input name="phone" required placeholder="Phone / WhatsApp" autoComplete="tel" className={field}/>
+ <select name="destination" defaultValue={defaultTrip||"Kenya & Tanzania"} className={field}><option>Kenya & Tanzania</option><option>Kenya</option><option>Tanzania</option><option>Zanzibar / coast</option><option>Not sure yet</option></select>
+ <input name="dates" type="text" placeholder="Travel dates (e.g. July 2027)" className={field}/>
+ <select name="travellers" defaultValue="2 travellers" className={field}><option>1 traveller</option><option>2 travellers</option><option>3–4 travellers</option><option>5–8 travellers</option><option>9+ travellers</option></select>
+ <select name="budget" defaultValue="" className={field}><option value="">Approx. budget per person</option><option>Under $2,000</option><option>$2,000–$4,000</option><option>$4,000–$6,000</option><option>$6,000+</option><option>Not decided</option></select>
+ <textarea name="details" rows={4} placeholder="Tell us a little about the safari you have in mind" className={field+" sm:col-span-2"}/>
+ <button type="submit" className="rounded-md bg-primary px-6 py-4 text-sm font-bold text-primary-foreground transition hover:-translate-y-0.5 sm:col-span-2">Continue to WhatsApp ↗</button>
+ </form>;
 }
 
 export function CTABanner({ image, title = "Your Africa story starts with one conversation." }: { image: string; title?: string }) {
