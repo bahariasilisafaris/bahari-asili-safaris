@@ -17,11 +17,14 @@ const NAV = [
 
 export function Logo({ className }: { className?: string }) {
   return (
-    <Link to="/" className={cn("flex items-center gap-2 font-display text-lg font-bold tracking-tight", className)}>
-      <span className="grid h-8 w-8 place-items-center rounded-full bg-primary text-primary-foreground">
-        <svg viewBox="0 0 24 24" className="h-4 w-4" fill="currentColor"><path d="M12 3c-2 4-6 5-9 5 3 1 6 3 7 7h4c1-4 4-6 7-7-3 0-7-1-9-5Zm-1 13h2v5h-2z" /></svg>
-      </span>
-      Bahari Asili
+    <Link to="/" aria-label="Bahari Asili Safaris home" className={cn("inline-flex items-center", className)}>
+      <img
+        src="/images/logo/logo-horizontal.png"
+        alt="Bahari Asili Safaris"
+        className="h-9 w-auto max-w-[190px] object-contain sm:h-10"
+        width="480"
+        height="90"
+      />
     </Link>
   );
 }
