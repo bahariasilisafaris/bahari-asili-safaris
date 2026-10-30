@@ -22,6 +22,7 @@ function Home() {
     <>
       <Hero />
       <Intro />
+      <SafariRegions />
       <Featured />
       <Experiences />
       <Impact />
@@ -31,6 +32,89 @@ function Home() {
       <CTABanner image={img.amboseli} title="A smarter, simpler way to explore wild Africa." />
       <Reviews />
     </>
+  );
+}
+
+
+function SafariRegions() {
+  const regions = [
+    {
+      title: "Kenya safaris",
+      label: "Big skies · Iconic wildlife",
+      body: "From the Great Migration in the Maasai Mara to elephant country beneath Kilimanjaro.",
+      image: img.migration,
+      slugs: ["great-migration-classic", "kilimanjaro-amboseli"],
+    },
+    {
+      title: "Tanzania safaris",
+      label: "Endless plains · Dramatic landscapes",
+      body: "Discover the Serengeti, descend into Ngorongoro and follow the rhythm of the wild.",
+      image: img.crater,
+      slugs: ["serengeti-ngorongoro"],
+    },
+    {
+      title: "Bush & beach",
+      label: "Safari days · Coastal escapes",
+      body: "Pair time in the wilderness with warm Indian Ocean shores and island experiences.",
+      image: img.beach,
+      slugs: ["safari-and-zanzibar"],
+    },
+  ];
+
+  return (
+    <section className="mx-auto max-w-6xl px-6 pb-24">
+      <div className="mb-10 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+        <SectionHead
+          eyebrow="Find your kind of Africa"
+          title="Three ways to begin your journey."
+          body="Choose the landscape that calls to you. We’ll help shape the route, pace and experiences around your plans."
+        />
+        <Link
+          to="/itineraries"
+          className="inline-flex min-h-11 shrink-0 items-center gap-2 self-start rounded-full border border-primary px-5 py-2.5 text-sm font-semibold text-primary transition-colors hover:bg-primary hover:text-primary-foreground sm:self-auto"
+        >
+          Explore all itineraries <span aria-hidden="true">↗</span>
+        </Link>
+      </div>
+      <div className="grid gap-5 md:grid-cols-3">
+        {regions.map((region, index) => {
+          const itinerary = itineraries.find((item) => item.slug === region.slugs[0]);
+          return (
+            <article key={region.title} className="group overflow-hidden rounded-[1.75rem] border border-border bg-card transition duration-500 hover:-translate-y-1 hover:shadow-[var(--shadow-soft)]">
+              <Link
+                to="/itineraries/$slug"
+                params={{ slug: itinerary?.slug ?? "great-migration-classic" }}
+                className="relative block aspect-[5/4] overflow-hidden"
+                aria-label={`Explore ${region.title}`}
+              >
+                <img
+                  src={region.image}
+                  alt={region.title}
+                  loading="lazy"
+                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                <span className="absolute left-4 top-4 rounded-full bg-white/95 px-3 py-1.5 text-xs font-bold text-primary">
+                  0{index + 1}
+                </span>
+                <span className="absolute bottom-0 left-0 h-1 w-full origin-left scale-x-0 bg-accent transition-transform duration-500 group-hover:scale-x-100" />
+              </Link>
+              <div className="p-6">
+                <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-accent">{region.label}</p>
+                <h3 className="mt-2 text-2xl font-bold text-foreground">{region.title}</h3>
+                <p className="mt-3 min-h-[4.5rem] text-sm leading-6 text-muted-foreground">{region.body}</p>
+                <Link
+                  to="/itineraries/$slug"
+                  params={{ slug: itinerary?.slug ?? "great-migration-classic" }}
+                  className="mt-5 inline-flex min-h-11 items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition-colors hover:bg-[var(--brand-primary-deep)]"
+                >
+                  Explore this journey <span aria-hidden="true">↗</span>
+                </Link>
+              </div>
+            </article>
+          );
+        })}
+      </div>
+    </section>
   );
 }
 
