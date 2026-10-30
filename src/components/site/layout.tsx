@@ -39,11 +39,12 @@ export function Nav() {
 }
 
 export function Footer() {
- return <footer className="ba-footer"><div className="ba-footer-grid"><div><Logo/><p className="mt-5 max-w-xs text-sm leading-7 text-white/65">Thoughtfully planned safaris across Kenya and Tanzania. Discover East Africa at your own pace.</p><p className="mt-5 text-xs uppercase tracking-widest text-white/45">Kenya · Tanzania · Zanzibar</p></div>
- <div><h3>Explore</h3><Link to="/destinations">Destinations</Link><Link to="/itineraries">Safari packages</Link><Link to="/tours">Tours & experiences</Link><Link to="/lodges">Safari lodges</Link></div>
- <div><h3>Bahari Asili</h3><Link to="/about">About us</Link><Link to="/contact">Contact</Link><Link to="/reviews">Guest feedback</Link><Link to="/contact">FAQs</Link></div>
- <div><h3>Get in touch</h3><a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a><a href={`tel:${CONTACT.whatsapp}`}>{CONTACT.phone}</a><a href={`https://wa.me/${CONTACT.whatsapp}`} target="_blank" rel="noreferrer">WhatsApp us ↗</a><p>{CONTACT.address}</p><p className="mt-4 text-xs leading-6 text-white/55">For enquiries and trip support, contact our team directly.</p></div></div>
- <div className="ba-footer-bottom"><span>© {new Date().getFullYear()} {BRAND}. All rights reserved.</span><span>Made for meaningful journeys across East Africa.</span></div></footer>;
+ return <footer className="ba-footer"><div className="ba-footer-grid">
+  <div><h3>Get in touch</h3><Logo/><p className="mt-4 max-w-xs text-sm leading-7 text-white/65">Kenya & Tanzania</p><a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a><a href={`tel:${CONTACT.whatsapp}`}>{CONTACT.phone}</a><a href={`https://wa.me/${CONTACT.whatsapp}`} target="_blank" rel="noreferrer">WhatsApp us ↗</a></div>
+  <div><h3>Company</h3><Link to="/about">About us</Link><Link to="/contact">Our approach</Link><Link to="/reviews">Guest feedback</Link><Link to="/contact">Contact</Link></div>
+  <div><h3>Safari services</h3><Link to="/destinations">Destinations</Link><Link to="/itineraries">Safari packages</Link><Link to="/tours">Tours & experiences</Link><Link to="/lodges">Safari lodges</Link><Link to="/contact">FAQs & enquiries</Link></div>
+  <div><h3>Stay updated</h3><p className="text-sm leading-6 text-white/65">Occasional safari inspiration and new itinerary ideas.</p><form className="mt-3 flex w-full gap-1 rounded-md bg-white/10 p-1" onSubmit={e=>{e.preventDefault();const email=new FormData(e.currentTarget).get("newsletter");const subject=encodeURIComponent("Safari updates subscription");const body=encodeURIComponent(`Please add ${email} to occasional Bahari Asili Safaris updates.`);window.location.href=`mailto:${CONTACT.email}?subject=${subject}&body=${body}`;}}><input name="newsletter" type="email" required placeholder="Email address" className="min-w-0 flex-1 bg-transparent px-2 text-xs text-white outline-none placeholder:text-white/50"/><button type="submit" className="rounded bg-[#d77a43] px-3 py-2 text-xs font-bold text-white">Subscribe</button></form><p className="mt-4 text-xs leading-6 text-white/55">For trip questions and travel support, contact our team directly.</p></div>
+ </div><div className="ba-footer-bottom"><span>© {new Date().getFullYear()} {BRAND}. All rights reserved.</span><span>Thoughtfully planned journeys across East Africa.</span></div></footer>;
 }
 
 export function PageHero({ eyebrow, title, body, image, children }: { eyebrow: string; title: string; body?: string; image: string; children?: ReactNode }) {
