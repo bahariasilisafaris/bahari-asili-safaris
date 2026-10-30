@@ -61,10 +61,10 @@ function Hero() {
           <div className="grid items-end gap-10 lg:grid-cols-[1.4fr_1fr]">
             <div>
               <Reveal><Eyebrow>Kenya · Tanzania · Zanzibar</Eyebrow></Reveal>
-              <h1 className="mt-6 text-5xl font-extrabold sm:text-7xl lg:text-8xl">
-                <SplitWords text="Discover Africa." />
+              <h1 className="mt-6 max-w-4xl text-5xl font-extrabold leading-[1.12] tracking-[-0.045em] sm:text-7xl lg:text-8xl">
+                <SplitWords text="Discover Africa." className="block" />
                 <br />
-                <SplitWords text="Your journey starts here." className="text-ink-foreground/75" />
+                <SplitWords text="Your journey starts here." className="block text-ink-foreground/75" />
               </h1>
               <Reveal i={6}>
                 <p className="mt-6 max-w-lg text-lg text-ink-foreground/80">Tailor-made safaris across Kenya and Tanzania. From your first game drive to your last sunset, everything in one place.</p>
