@@ -116,11 +116,18 @@ export function Footer() {
             <h4 className="text-sm font-semibold text-ink-muted">Field notes</h4>
             <p className="mt-4 text-sm text-ink-muted">Seasonal sightings and new itineraries, once a month.</p>
             <form
-              onSubmit={(e) => { e.preventDefault(); (e.target as HTMLFormElement).reset(); toast.success("You're on the list. Karibu!"); }}
+              onSubmit={(e) => {
+                e.preventDefault();
+                const email = new FormData(e.currentTarget).get("email");
+                const subject = encodeURIComponent("Please add me to Bahari Asili Safaris field notes");
+                const body = encodeURIComponent(`Please send occasional safari updates to: ${email}`);
+                window.location.href = `mailto:${CONTACT.email}?subject=${subject}&body=${body}`;
+                toast.info("Your email app will open so you can request updates.");
+              }}
               className="mt-4 flex rounded-full bg-ink-foreground/10 p-1"
             >
-              <input required type="email" placeholder="Email address" className="min-w-0 flex-1 bg-transparent px-4 text-sm outline-none placeholder:text-ink-muted" />
-              <button className="rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground">Join</button>
+              <input name="email" required type="email" placeholder="Email address" className="min-w-0 flex-1 bg-transparent px-4 text-sm outline-none placeholder:text-ink-muted" />
+              <button type="submit" className="rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground">Request</button>
             </form>
           </div>
         </div>
