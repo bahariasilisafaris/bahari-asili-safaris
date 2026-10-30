@@ -101,8 +101,8 @@ function Intro() {
   const feats = [
     { n: "01", t: "Choose your region", b: "Kenya, Tanzania or both, from the Mara to Zanzibar's reefs." },
     { n: "02", t: "Pick your experience", b: "Big Five drives, walking safaris, beach or culture." },
-    { n: "03", t: "Book with confidence", b: "Clear pricing and confirmation within 24 hours." },
-    { n: "04", t: "Travel & explore", b: "A local team on call from arrival to departure." },
+    { n: "03", t: "Book with confidence", b: "Review itinerary options, inclusions and costs before you confirm." },
+    { n: "04", t: "Travel & explore", b: "Stay in touch with your safari contact as you travel." },
   ];
   return (
     <section className="mx-auto max-w-6xl px-6 py-28">
@@ -113,7 +113,7 @@ function Intro() {
           </Reveal>
           <Reveal i={3} className="absolute -right-4 bottom-10 flex items-center gap-3 rounded-full bg-card p-2 pr-6 shadow-[var(--shadow-soft)] sm:-right-10">
             <span className="grid h-11 w-11 place-items-center rounded-full bg-primary text-primary-foreground">✓</span>
-            <div><p className="text-sm font-bold">Trip confirmed</p><p className="text-xs text-muted-foreground">Serengeti · 8 days · 2 guests</p></div>
+            <div><p className="text-sm font-bold">Your trip, your pace</p><p className="text-xs text-muted-foreground">A journey designed around you</p></div>
           </Reveal>
         </div>
         <div>
@@ -229,10 +229,10 @@ function Impact() {
 
 function Confidence() {
   const items = [
-    { t: "Handpicked lodges & camps", b: "From classic tented camps to signature lodges, every property is visited by our team each season.", image: img.lodge },
-    { t: "Certified local guides", b: "Kenyan and Tanzanian guides with years of tracking experience and deep knowledge of the land.", image: img.culture },
-    { t: "Flexible changes", b: "Plans change. Move dates or swap camps without the stress — we handle it.", image: img.crater },
-    { t: "Booking assistance, 24/7", b: "A real person on WhatsApp from your first question until you're home.", image: img.jeep },
+    { t: "Accommodation options", b: "Compare a range of camps, lodges and coastal stays to find the right fit for your journey.", image: img.lodge },
+    { t: "Regional perspective", b: "Explore Kenya and Tanzania with itinerary ideas shaped around the places you want to discover.", image: img.culture },
+    { t: "Flexible itineraries", b: "Adjust the route, travel pace and experiences to suit your dates and group.", image: img.crater },
+    { t: "Direct communication", b: "Ask questions and discuss your plans with our team by email or WhatsApp.", image: img.jeep },
   ];
   const [open, setOpen] = useState(0);
   return (
