@@ -5,8 +5,8 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --font-display: "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
-  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Poppins", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -55,31 +55,40 @@
 }
 
 :root {
+  /* Official Bahari Asili brand tokens. */
+  --brand-primary: #167D95;
+  --brand-primary-hover: #11677B;
+  --brand-primary-deep: #104B59;
+  --brand-secondary: #FF7418;
+  --brand-sand: #F5F1E8;
+  --brand-text: #1F2937;
+  --brand-text-muted: #52616B;
+  --brand-border: #D9E1E3;
   --radius: 1rem;
-  --background: oklch(0.965 0.014 80);
-  --foreground: oklch(0.21 0.02 55);
-  --card: oklch(0.99 0.008 80);
-  --card-foreground: oklch(0.21 0.02 55);
-  --popover: oklch(0.99 0.008 80);
-  --popover-foreground: oklch(0.21 0.02 55);
-  --primary: oklch(0.64 0.16 48);
-  --primary-foreground: oklch(0.99 0.01 80);
-  --secondary: oklch(0.92 0.03 80);
-  --secondary-foreground: oklch(0.21 0.02 55);
-  --muted: oklch(0.93 0.02 80);
-  --muted-foreground: oklch(0.48 0.025 60);
-  --accent: oklch(0.86 0.09 82);
-  --accent-foreground: oklch(0.21 0.02 55);
+  --background: #FFFFFF;
+  --foreground: #1F2937;
+  --card: #FFFFFF;
+  --card-foreground: #1F2937;
+  --popover: #FFFFFF;
+  --popover-foreground: #1F2937;
+  --primary: #167D95;
+  --primary-foreground: #FFFFFF;
+  --secondary: #F5F1E8;
+  --secondary-foreground: #1F2937;
+  --muted: #F7F9F8;
+  --muted-foreground: #52616B;
+  --accent: #FF7418;
+  --accent-foreground: #1F2937;
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(0.87 0.02 75);
-  --input: oklch(0.87 0.02 75);
-  --ring: oklch(0.64 0.16 48);
-  --ink: oklch(0.19 0.018 55);
-  --ink-foreground: oklch(0.96 0.015 80);
-  --ink-muted: oklch(0.7 0.025 70);
-  --sand: oklch(0.9 0.04 80);
-  --glass: oklch(0.99 0.01 80 / 0.14);
+  --border: #D9E1E3;
+  --input: #D9E1E3;
+  --ring: #0B6174;
+  --ink: #104B59;
+  --ink-foreground: #FFFFFF;
+  --ink-muted: #D5E4E6;
+  --sand: #F5F1E8;
+  --glass: rgb(255 255 255 / 14%);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -94,8 +103,8 @@
   --sidebar-border: oklch(0.929 0.013 255.508);
   --sidebar-ring: oklch(0.704 0.04 256.788);
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
-  --shadow-soft: 0 30px 60px -30px oklch(0.19 0.018 55 / 0.35);
-  --scrim: linear-gradient(180deg, oklch(0.15 0.02 55 / 0.35) 0%, oklch(0.15 0.02 55 / 0) 35%, oklch(0.15 0.02 55 / 0.75) 100%);
+  --shadow-soft: 0 30px 60px -30px rgb(16 75 89 / 35%);
+  --scrim: linear-gradient(180deg, rgb(16 35 40 / 38%) 0%, rgb(16 35 40 / 8%) 35%, rgb(16 35 40 / 78%) 100%);
 }
 
 @layer base {
