@@ -618,5 +618,5 @@ html,body{font-family:var(--font-sans)}
 h1,h2,h3,h4,.ba-home h1,.ba-home h2,.ba-home h3,.ba-footer h3,.ba-heading,.ba-combo h2,.ba-group h2,.ba-planning h2,.ba-cta h2,.ba-brochure h2,.ba-difference-image span,.ba-feature-list b,.ba-video-card b,.ba-faq-item button,.ba-planning-cards b,.ba-partners>p:nth-child(2){font-family:var(--font-display)}
 .ba-footer{background:#104B59}
 .ba-footer-marquee{margin:42px 0 0;padding:24px 0 30px;border-top:1px solid rgb(255 255 255 / 18%);border-bottom:0}
-.ba-footer-marquee-group span{color:#F5F1E8;font-family:var(--font-display);font-weight:800;letter-spacing:-.045em}
+.ba-footer-marquee-group span{color:rgb(5 35 42 / 42%);font-family:"Bricolage Grotesque",ui-sans-serif,system-ui,sans-serif;font-size:clamp(3.2rem,8vw,7.5rem);font-weight:800;letter-spacing:-.055em;text-transform:none}
 .ba-footer-marquee-group i{color:#FF7418}
