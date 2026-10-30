@@ -26,6 +26,7 @@ function Home() {
       <Experiences />
       <Impact />
       <Confidence />
+      <HowToBook />
       <CTABanner image={img.amboseli} title="A smarter, simpler way to explore wild Africa." />
       <Reviews />
     </>
@@ -279,6 +280,47 @@ function Confidence() {
             ))}
           </div>
         </div>
+      </div>
+    </section>
+  );
+}
+
+
+function HowToBook() {
+  const steps = [
+    { n: "01", title: "Tell us what inspires you", body: "Share your preferred destinations, travel dates, group size and the experiences you have in mind.", icon: "✦" },
+    { n: "02", title: "Shape your itinerary", body: "We’ll help refine the route, pace and places to stay around your interests and budget.", icon: "↗" },
+    { n: "03", title: "Review your proposal", body: "Explore your day-by-day plan, accommodation options and trip details before you decide.", icon: "✓" },
+    { n: "04", title: "Confirm and get ready", body: "Once you’re happy, we’ll guide you through the next steps and help prepare for your journey.", icon: "➜" },
+  ];
+
+  return (
+    <section className="border-y border-border bg-card py-24">
+      <div className="mx-auto max-w-6xl px-6">
+        <SectionHead
+          eyebrow="How to book"
+          title="A thoughtful journey, made simple."
+          body="From the first conversation to the day you travel, we make planning your safari clear and personal."
+        />
+        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {steps.map((step, i) => (
+            <Reveal key={step.n} i={i + 1} className="rounded-3xl border border-border bg-background p-6 transition duration-500 hover:-translate-y-1 hover:shadow-[var(--shadow-soft)]">
+              <div className="flex items-center justify-between">
+                <span className="grid h-11 w-11 place-items-center rounded-2xl bg-primary text-lg font-bold text-primary-foreground">{step.icon}</span>
+                <span className="font-display text-sm font-bold tracking-[0.16em] text-primary">{step.n}</span>
+              </div>
+              <h3 className="mt-6 font-display text-xl font-bold">{step.title}</h3>
+              <p className="mt-3 text-sm leading-6 text-muted-foreground">{step.body}</p>
+            </Reveal>
+          ))}
+        </div>
+        <Reveal i={5} className="mt-8 flex flex-wrap items-center justify-between gap-4 rounded-3xl bg-sand px-6 py-6 sm:px-8">
+          <div>
+            <p className="font-display text-xl font-bold">Have an idea for your safari?</p>
+            <p className="mt-1 text-sm text-muted-foreground">Tell us what you’re dreaming of. There’s no obligation to enquire.</p>
+          </div>
+          <PillButton to="/contact">Start planning</PillButton>
+        </Reveal>
       </div>
     </section>
   );
