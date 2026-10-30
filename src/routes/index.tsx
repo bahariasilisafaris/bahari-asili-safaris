@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 import { img, itineraries, experiences } from "@/lib/site-data";
 import { Reveal, SplitWords, PillButton, Eyebrow } from "@/components/site/motion";
