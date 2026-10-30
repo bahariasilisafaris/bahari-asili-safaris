@@ -171,21 +171,38 @@ export function EnquiryForm({ defaultTrip = "" }: { defaultTrip?: string }) {
   if (sent)
     return (
       <div className="rounded-[2rem] bg-card p-10 text-center">
-        <h3 className="text-3xl font-bold">Asante! We've got it.</h3>
-        <p className="mt-3 text-muted-foreground">A safari specialist will reply within 24 hours.</p>
+        <h3 className="text-3xl font-bold">Your enquiry is ready.</h3>
+        <p className="mt-3 text-muted-foreground">WhatsApp should have opened with your trip details. Press Send there to deliver your enquiry to our team.</p>
+        <a href={`https://wa.me/${CONTACT.whatsapp}`} target="_blank" rel="noreferrer" className="mt-6 inline-flex rounded-full bg-primary px-6 py-3 font-semibold text-primary-foreground">Open WhatsApp ↗</a>
       </div>
     );
   const field = "w-full rounded-2xl border border-input bg-background px-4 py-3 text-sm outline-none transition focus:border-primary";
   return (
-    <form onSubmit={(e) => { e.preventDefault(); setSent(true); toast.success("Enquiry sent"); }} className="grid gap-4 rounded-[2rem] bg-card p-6 sm:grid-cols-2 sm:p-10">
-      <input required placeholder="Full name" className={field} />
-      <input required type="email" placeholder="Email" className={field} />
-      <input placeholder="Phone / WhatsApp" className={field} />
-      <input placeholder="Trip of interest" defaultValue={defaultTrip} className={field} />
-      <input type="month" aria-label="Travel month" className={field} />
-      <select className={field} defaultValue="2"><option value="1">1 traveller</option><option value="2">2 travellers</option><option value="4">3–4 travellers</option><option value="6">5+ travellers</option></select>
-      <textarea rows={4} placeholder="Tell us about your dream safari" className={cn(field, "sm:col-span-2")} />
-      <button className="rounded-full bg-primary px-6 py-4 font-semibold text-primary-foreground transition hover:-translate-y-0.5 sm:col-span-2">Send enquiry ↗</button>
+    <form onSubmit={(e) => {
+      e.preventDefault();
+      const form = e.currentTarget;
+      const data = new FormData(form);
+      const message = [
+        "Hello Bahari Asili Safaris, I'd like to enquire about a trip.",
+        `Name: ${data.get("name")}`,
+        `Email: ${data.get("email")}`,
+        `Phone / WhatsApp: ${data.get("phone") || "Not provided"}`,
+        `Trip of interest: ${data.get("trip") || "Open to suggestions"}`,
+        `Travel month: ${data.get("month") || "Flexible"}`,
+        `Travellers: ${data.get("travellers")}`,
+        `Trip details: ${data.get("details") || "Not provided"}`,
+      ].join("\\n");
+      window.open(`https://wa.me/${CONTACT.whatsapp}?text=${encodeURIComponent(message)}`, "_blank", "noopener,noreferrer");
+      setSent(true);
+    }} className="grid gap-4 rounded-[2rem] bg-card p-6 sm:grid-cols-2 sm:p-10">
+      <input name="name" required placeholder="Full name" autoComplete="name" className={field} />
+      <input name="email" required type="email" placeholder="Email" autoComplete="email" className={field} />
+      <input name="phone" placeholder="Phone / WhatsApp" autoComplete="tel" className={field} />
+      <input name="trip" placeholder="Trip of interest" defaultValue={defaultTrip} className={field} />
+      <input name="month" type="month" aria-label="Travel month" className={field} />
+      <select name="travellers" className={field} defaultValue="2"><option value="1">1 traveller</option><option value="2">2 travellers</option><option value="3–4">3–4 travellers</option><option value="5+">5+ travellers</option></select>
+      <textarea name="details" rows={4} placeholder="Tell us about your dream safari" className={cn(field, "sm:col-span-2")} />
+      <button type="submit" className="rounded-full bg-primary px-6 py-4 font-semibold text-primary-foreground transition hover:-translate-y-0.5 sm:col-span-2">Continue to WhatsApp ↗</button>
     </form>
   );
 }
