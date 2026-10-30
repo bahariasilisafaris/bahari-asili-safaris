@@ -27,6 +27,7 @@ function Home() {
       <Impact />
       <Confidence />
       <HowToBook />
+      <BuildSafariPromo />
       <CTABanner image={img.amboseli} title="A smarter, simpler way to explore wild Africa." />
       <Reviews />
     </>
@@ -321,6 +322,38 @@ function HowToBook() {
           </div>
           <PillButton to="/contact">Start planning</PillButton>
         </Reveal>
+      </div>
+    </section>
+  );
+}
+
+
+function BuildSafariPromo() {
+  return (
+    <section className="px-2 pb-24 sm:px-3">
+      <div className="relative isolate overflow-hidden rounded-[2rem] bg-ink">
+        <img
+          src={img.amboseli}
+          alt="Elephants beneath Mount Kilimanjaro on an Amboseli safari"
+          loading="lazy"
+          className="absolute inset-0 -z-20 h-full w-full object-cover"
+        />
+        <div aria-hidden="true" className="absolute inset-0 -z-10 bg-gradient-to-r from-black/90 via-black/70 to-black/25" />
+        <div className="mx-auto max-w-6xl px-6 py-24 sm:py-28 lg:py-32">
+          <Reveal className="max-w-2xl">
+            <Eyebrow>Made for you</Eyebrow>
+            <h2 className="mt-5 font-display text-4xl font-bold leading-tight text-white sm:text-5xl">
+              Your Africa. Your pace. Your kind of adventure.
+            </h2>
+            <p className="mt-5 max-w-xl text-base leading-7 text-white/85 sm:text-lg">
+              Have a destination in mind, a special occasion to celebrate or a journey you can’t find in our itineraries? Let’s shape a safari around you.
+            </p>
+            <div className="mt-8 flex flex-wrap items-center gap-3">
+              <PillButton to="/contact">Create your safari</PillButton>
+              <span className="text-sm text-white/75">Personal planning · Flexible routes · No obligation</span>
+            </div>
+          </Reveal>
+        </div>
       </div>
     </section>
   );
