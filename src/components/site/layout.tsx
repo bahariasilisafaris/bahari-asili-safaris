@@ -22,8 +22,6 @@ export function Logo({ className }: { className?: string }) {
         src="/images/logo/logo-horizontal.png"
         alt="Bahari Asili Safaris"
         className="h-9 w-auto max-w-[190px] object-contain sm:h-10"
-        width="480"
-        height="90"
       />
     </Link>
   );
