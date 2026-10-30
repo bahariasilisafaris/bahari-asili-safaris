@@ -155,12 +155,12 @@ export const experiences = [
 ];
 
 export const destinations = [
-  { name: "Maasai Mara", country: "Kenya", image: migration, body: "Home of the Great Migration, July to October." },
-  { name: "Serengeti", country: "Tanzania", image: hero, body: "Endless plains and year-round big cats." },
-  { name: "Ngorongoro", country: "Tanzania", image: crater, body: "A volcanic caldera full of wildlife." },
-  { name: "Amboseli", country: "Kenya", image: amboseli, body: "Elephants beneath Kilimanjaro." },
-  { name: "Zanzibar", country: "Tanzania", image: beach, body: "Spice island beaches and Stone Town." },
-  { name: "Laikipia", country: "Kenya", image: culture, body: "Private conservancies and rare species." },
+  { slug: "maasai-mara", name: "Maasai Mara", country: "Kenya", image: migration, body: "Home of the Great Migration, July to October." },
+  { slug: "serengeti", name: "Serengeti", country: "Tanzania", image: hero, body: "Endless plains and year-round big cats." },
+  { slug: "ngorongoro", name: "Ngorongoro", country: "Tanzania", image: crater, body: "A volcanic caldera full of wildlife." },
+  { slug: "amboseli", name: "Amboseli", country: "Kenya", image: amboseli, body: "Elephants beneath Kilimanjaro." },
+  { slug: "zanzibar", name: "Zanzibar", country: "Tanzania", image: beach, body: "Spice island beaches and Stone Town." },
+  { slug: "laikipia", name: "Laikipia", country: "Kenya", image: culture, body: "Private conservancies and rare species." },
 ];
 
 export const lodges = [
