@@ -559,3 +559,54 @@ h1,h2,h3,h4 { font-family:"Cormorant Garamond",Georgia,serif; }
 @media(prefers-reduced-motion:reduce) {
  .has-scroll-reveal .site-reveal { opacity:1!important; transform:none!important; transition:none!important; }
 }
+
+
+/* Oversized Bahari Asili wordmark marquee across the footer. */
+.ba-footer-marquee {
+  width:100%;
+  overflow:hidden;
+  padding:24px 0 30px;
+  margin:0 0 42px;
+  border-top:1px solid rgb(255 255 255 / 15%);
+  border-bottom:1px solid rgb(255 255 255 / 15%);
+  color:#fff8ef;
+}
+.ba-footer-marquee-track {
+  display:flex;
+  width:max-content;
+  animation:ba-footer-marquee-scroll 34s linear infinite;
+}
+.ba-footer-marquee-group {
+  display:flex;
+  flex:0 0 auto;
+  align-items:center;
+  gap:clamp(22px,3vw,48px);
+  padding-right:clamp(22px,3vw,48px);
+}
+.ba-footer-marquee-group span {
+  white-space:nowrap;
+  font-family:"Cormorant Garamond",Georgia,serif;
+  font-size:clamp(2.7rem,6.3vw,6rem);
+  line-height:1;
+  font-weight:700;
+  letter-spacing:.015em;
+}
+.ba-footer-marquee-group i {
+  color:#ff7418;
+  font-size:clamp(1.5rem,3vw,2.7rem);
+  font-style:normal;
+}
+.ba-footer-marquee:hover .ba-footer-marquee-track,
+.ba-footer-marquee:focus-within .ba-footer-marquee-track { animation-play-state:paused; }
+@keyframes ba-footer-marquee-scroll {
+  from { transform:translateX(0); }
+  to { transform:translateX(-50%); }
+}
+@media(prefers-reduced-motion:reduce) {
+ .ba-footer-marquee-track { animation:none; }
+ .ba-footer-marquee-group[aria-hidden="true"] { display:none; }
+}
+@media(max-width:640px) {
+ .ba-footer-marquee { padding:19px 0 22px; margin-bottom:30px; }
+ .ba-footer-marquee-track { animation-duration:25s; }
+}
