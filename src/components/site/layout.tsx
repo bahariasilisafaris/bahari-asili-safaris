@@ -87,12 +87,8 @@ export function Footer() {
             <Logo />
             <p className="mt-4 max-w-xs text-sm text-ink-muted">Tailor-made safaris across Kenya and Tanzania, from the Mara to Zanzibar's shores.</p>
             <div className="mt-6 flex gap-2">
-              <a href="#" aria-label="Instagram" title="Instagram" className="grid h-10 w-10 place-items-center rounded-full border border-ink-foreground/20 transition hover:border-primary hover:bg-primary hover:text-primary-foreground"><Instagram aria-hidden="true" size={17} strokeWidth={1.8} /></a>
-              <a href="#" aria-label="Facebook" title="Facebook" className="grid h-10 w-10 place-items-center rounded-full border border-ink-foreground/20 transition hover:border-primary hover:bg-primary hover:text-primary-foreground"><Facebook aria-hidden="true" size={17} strokeWidth={1.8} /></a>
-              <a href="#" aria-label="YouTube" title="YouTube" className="grid h-10 w-10 place-items-center rounded-full border border-ink-foreground/20 transition hover:border-primary hover:bg-primary hover:text-primary-foreground"><Youtube aria-hidden="true" size={18} strokeWidth={1.8} /></a>
-              <a href="#" aria-label="TikTok" title="TikTok" className="grid h-10 w-10 place-items-center rounded-full border border-ink-foreground/20 transition hover:border-primary hover:bg-primary hover:text-primary-foreground">
-                <svg aria-hidden="true" viewBox="0 0 24 24" className="h-[17px] w-[17px]" fill="currentColor"><path d="M19.6 7.2a6.7 6.7 0 0 1-4.1-1.4v8.1a5.9 5.9 0 1 1-5.1-5.8v3.1a2.9 2.9 0 1 0 2 2.8V2.5h3.1c.2 2 1.8 3.6 4.1 3.8v.9Z" /></svg>
-              </a>
+              <a href="https://www.instagram.com/bahariasilisafaris/" target="_blank" rel="noreferrer" aria-label="Instagram" title="Instagram" className="grid h-10 w-10 place-items-center rounded-full border border-ink-foreground/20 transition hover:border-primary hover:bg-primary hover:text-primary-foreground"><Instagram aria-hidden="true" size={17} strokeWidth={1.8} /></a>
+              <a href="https://www.facebook.com/bahariasilisafaris/" target="_blank" rel="noreferrer" aria-label="Facebook" title="Facebook" className="grid h-10 w-10 place-items-center rounded-full border border-ink-foreground/20 transition hover:border-primary hover:bg-primary hover:text-primary-foreground"><Facebook aria-hidden="true" size={17} strokeWidth={1.8} /></a>
             </div>
           </div>
           <div>
@@ -109,7 +105,12 @@ export function Footer() {
               <li><Link to="/contact" className="hover:text-primary">Contact</Link></li>
               <li><Link to="/enquire" className="hover:text-primary">Enquire</Link></li>
             </ul>
-            <p className="mt-6 text-sm text-ink-muted">{CONTACT.phone}<br />{CONTACT.email}<br />{CONTACT.address}</p>
+            <div className="mt-6 space-y-1 text-sm text-ink-muted">
+              <a href={`tel:${CONTACT.whatsapp}`} className="block transition hover:text-primary">{CONTACT.phone}</a>
+              <a href={`mailto:${CONTACT.email}`} className="block transition hover:text-primary">{CONTACT.email}</a>
+              <a href={`https://wa.me/${CONTACT.whatsapp.replace(/\\D/g, "")}`} target="_blank" rel="noreferrer" className="inline-block transition hover:text-primary">Chat on WhatsApp ↗</a>
+              <p>{CONTACT.address}</p>
+            </div>
           </div>
           <div>
             <h4 className="text-sm font-semibold text-ink-muted">Field notes</h4>
