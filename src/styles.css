@@ -362,3 +362,7 @@ body { background: #FFFFFF; }
   background-image: none !important;
   background-color: rgb(12 34 38 / 58%);
 }
+
+@media (hover: none) {
+  .whatsapp-label { display: none !important; }
+}

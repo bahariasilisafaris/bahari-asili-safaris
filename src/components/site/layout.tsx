@@ -222,7 +222,7 @@ export function FloatingWhatsApp() {
 
   return (
     <a href={href} target="_blank" rel="noreferrer" aria-label="Chat with Bahari Asili Safaris on WhatsApp" className="group fixed bottom-[max(1.25rem,env(safe-area-inset-bottom))] right-5 z-[60] inline-flex items-center gap-0 sm:right-7">
-      <span className="pointer-events-none mr-3 translate-x-2 rounded-md bg-white px-4 py-3 text-sm font-medium text-foreground opacity-0 shadow-[0_4px_18px_rgb(0_0_0_/_14%)] transition-all duration-200 group-hover:translate-x-0 group-hover:opacity-100 group-focus-visible:translate-x-0 group-focus-visible:opacity-100">
+      <span className="whatsapp-label pointer-events-none mr-3 translate-x-2 rounded-md bg-white px-4 py-3 text-sm font-medium text-foreground opacity-0 shadow-[0_4px_18px_rgb(0_0_0_/_14%)] transition-all duration-200 group-hover:translate-x-0 group-hover:opacity-100 group-focus-visible:translate-x-0 group-focus-visible:opacity-100">
         Need Help? <strong className="font-bold">Chat with us</strong>
       </span>
       <span className="grid h-14 w-14 shrink-0 place-items-center rounded-full bg-[#25D366] text-white shadow-[0_5px_18px_rgb(0_0_0_/_18%)] transition-transform duration-200 group-hover:scale-105 sm:h-16 sm:w-16">
