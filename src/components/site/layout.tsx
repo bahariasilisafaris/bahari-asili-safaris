@@ -70,8 +70,8 @@ export function Footer() {
   <div><h3>Stay updated</h3><p className="text-sm leading-6 text-white/65">Occasional safari inspiration and new itinerary ideas.</p><form className="mt-3 flex w-full gap-1 rounded-md bg-white/10 p-1" onSubmit={e=>{e.preventDefault();const email=new FormData(e.currentTarget).get("newsletter");const subject=encodeURIComponent("Safari updates subscription");const body=encodeURIComponent(`Please add ${email} to occasional Bahari Asili Safaris updates.`);window.location.href=`mailto:${CONTACT.email}?subject=${subject}&body=${body}`;}}><input name="newsletter" type="email" required placeholder="Email address" className="min-w-0 flex-1 bg-transparent px-2 text-xs text-white outline-none placeholder:text-white/50"/><button type="submit" className="rounded bg-[#d77a43] px-3 py-2 text-xs font-bold text-white">Subscribe</button></form><p className="mt-4 text-xs leading-6 text-white/55">For trip questions and travel support, contact our team directly.</p></div>
  </div><div className="ba-footer-bottom"><span>© {new Date().getFullYear()} {BRAND}. All rights reserved.</span><span>Thoughtfully planned journeys across East Africa.</span></div>  <div className="ba-footer-marquee" aria-label="Bahari Asili Safaris">
    <div className="ba-footer-marquee-track">
-    <div className="ba-footer-marquee-group"><span>BAHARI ASILI SAFARIS</span><i aria-hidden="true">✳</i><span>BAHARI ASILI SAFARIS</span><i aria-hidden="true">✳</i><span>BAHARI ASILI SAFARIS</span><i aria-hidden="true">✳</i></div>
-    <div className="ba-footer-marquee-group" aria-hidden="true"><span>BAHARI ASILI SAFARIS</span><i>✳</i><span>BAHARI ASILI SAFARIS</span><i>✳</i><span>BAHARI ASILI SAFARIS</span><i>✳</i></div>
+    <div className="ba-footer-marquee-group"><span>Bahari Asili Safaris</span><i aria-hidden="true">✳</i><span>Bahari Asili Safaris</span><i aria-hidden="true">✳</i><span>Bahari Asili Safaris</span><i aria-hidden="true">✳</i></div>
+    <div className="ba-footer-marquee-group" aria-hidden="true"><span>Bahari Asili Safaris</span><i>✳</i><span>Bahari Asili Safaris</span><i>✳</i><span>Bahari Asili Safaris</span><i>✳</i></div>
    </div>
   </div>
  </footer>;
