@@ -183,7 +183,7 @@ function Hero() {
             </div>
 
             <div className="relative hidden h-[330px] lg:block">
-              <div className="glass float-card absolute right-0 top-0 w-64 rounded-3xl border border-white/25 p-5" style={{ ["--i" as string]: 0 }}>
+              <div className="float-card absolute right-0 top-0 w-64 rounded-3xl border border-white/15 bg-ink/90 p-5 shadow-xl" style={{ ["--i" as string]: 0 }}>
                 <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-white/70">The Bahari Asili difference</p>
                 <p className="mt-3 font-display text-2xl font-bold leading-tight">Wild places. Thoughtful journeys.</p>
                 <p className="mt-3 text-sm leading-6 text-white/75">Local insight, carefully paced itineraries and room to explore.</p>
@@ -269,7 +269,7 @@ function Featured() {
                 >
                   <img src={it.image} alt={it.name} loading="lazy" className={cn("absolute inset-0 h-full w-full object-cover transition-transform duration-[1400ms]", on ? "scale-100" : "scale-110")} />
                   <div className="scrim absolute inset-0" />
-                  <span className="glass absolute left-4 top-4 rounded-full px-3 py-1 text-xs font-semibold">{it.tag}</span>
+                  <span className="absolute left-4 top-4 rounded-full bg-ink/85 px-3 py-1 text-xs font-semibold text-white">{it.tag}</span>
                   <div className={cn("absolute inset-x-0 bottom-0 p-6 transition-all duration-700", on ? "translate-y-0 opacity-100" : "md:translate-y-6 md:opacity-0")}>
                     <p className="text-sm text-ink-foreground/75">{it.days} days · {it.country} · from ${it.price.toLocaleString()}</p>
                     <h3 className="mt-1 text-3xl font-bold">{it.name}</h3>
