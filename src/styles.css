@@ -620,3 +620,84 @@ h1,h2,h3,h4,.ba-home h1,.ba-home h2,.ba-home h3,.ba-footer h3,.ba-heading,.ba-co
 .ba-footer-marquee{margin:42px 0 0;padding:24px 0 30px;border-top:1px solid rgb(255 255 255 / 18%);border-bottom:0}
 .ba-footer-marquee-group span{color:rgb(5 35 42 / 42%);font-family:"Bricolage Grotesque",ui-sans-serif,system-ui,sans-serif;font-size:clamp(3.2rem,8vw,7.5rem);font-weight:800;letter-spacing:-.055em;text-transform:none}
 .ba-footer-marquee-group i{color:#FF7418}
+
+
+/* Site-wide typography scale: comfortable reading on desktop and mobile. */
+:root {
+  --ba-body-size: 1rem;
+  --ba-body-leading: 1.75;
+  --ba-small-size: 0.875rem;
+}
+html { font-size: 16px; }
+body {
+  font-size: var(--ba-body-size);
+  line-height: var(--ba-body-leading);
+  text-rendering: optimizeLegibility;
+}
+main p,
+main li,
+.ba-home p:not(.ba-eyebrow),
+.ba-home li,
+.ba-footer-grid p,
+.ba-footer-grid a {
+  font-size: 1rem;
+  line-height: 1.75;
+}
+main p.text-sm,
+main li.text-sm { font-size: 1rem; }
+main p.text-xs,
+main li.text-xs { font-size: 0.875rem; line-height: 1.6; }
+main h1, .ba-home h1 {
+  line-height: 1.06;
+  text-wrap: balance;
+}
+main h2, .ba-home h2 {
+  line-height: 1.12;
+  text-wrap: balance;
+}
+main h3, .ba-home h3 {
+  line-height: 1.18;
+  text-wrap: balance;
+}
+.ba-heading {
+  font-size: clamp(2.25rem, 4.4vw, 3.75rem);
+  line-height: 1.08;
+}
+.ba-hero-copy h1 {
+  font-size: clamp(3rem, 7vw, 6.25rem);
+  line-height: 1.02;
+}
+.ba-hero-copy>p:not(.ba-eyebrow),
+.ba-combo p:not(.ba-eyebrow),
+.ba-group p:not(.ba-eyebrow),
+.ba-planning p:not(.ba-eyebrow),
+.ba-brochure p:not(.ba-eyebrow),
+.ba-tour-content>p:not(.ba-tour-meta),
+.ba-proof-card p:not(.ba-eyebrow),
+.ba-faq-item p,
+.ba-cta>p:not(.ba-eyebrow),
+.ba-video-modal>div p {
+  font-size: 1rem;
+  line-height: 1.75;
+}
+.ba-destination-card p { font-size: 0.9375rem; line-height: 1.55; }
+.ba-trust { font-size: 0.8125rem; line-height: 1.5; }
+.ba-utility { font-size: 0.8125rem; }
+.ba-nav-links a { font-size: 0.875rem; }
+.ba-nav-cta { font-size: 0.875rem; }
+.ba-mobile-menu a { font-size: 1rem; }
+.ba-button, .ba-text-link { font-size: 0.9375rem; }
+.ba-search label span, .ba-search select { font-size: 0.875rem; }
+.ba-tour-meta, .ba-tour-image>span, .ba-tour-bottom a { font-size: 0.8125rem; }
+.ba-feature-list small, .ba-planning-cards span { font-size: 0.875rem; line-height: 1.65; }
+.ba-footer-grid a, .ba-footer-grid p { font-size: 0.9375rem; }
+.ba-footer-bottom { font-size: 0.8125rem; line-height: 1.6; }
+.ba-note, .ba-partners small, .ba-proof-card small { font-size: 0.8125rem; line-height: 1.6; }
+@media (max-width: 640px) {
+  body { font-size: 1rem; }
+  .ba-hero-copy>p:not(.ba-eyebrow) { font-size: 1rem; }
+  .ba-trust { font-size: 0.8125rem; }
+  .ba-destination-card p { font-size: 0.875rem; }
+  .ba-utility { font-size: 0.75rem; }
+  .ba-footer-grid a, .ba-footer-grid p { font-size: 0.9375rem; }
+}
