@@ -104,7 +104,7 @@ export function SectionHead({ eyebrow, title, body, dark }: { eyebrow: string; t
   );
 }
 
-export function EnquiryForm({ defaultTrip = "" }: { defaultTrip?: string }) {
+export function EnquiryForm({ defaultTrip = "", defaultTravellers = "" }: { defaultTrip?: string; defaultTravellers?: string }) {
  const [sent,setSent]=useState(false);
  if(sent) return <div className="rounded-xl bg-card p-8 text-center"><h3 className="text-2xl font-bold">Your enquiry is ready.</h3><p className="mt-3 text-sm text-muted-foreground">WhatsApp should have opened with your trip details. Press Send there to deliver your enquiry.</p><a href={`https://wa.me/${CONTACT.whatsapp}`} target="_blank" rel="noreferrer" className="mt-5 inline-flex rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground">Open WhatsApp ↗</a></div>;
  const field="w-full rounded-md border border-input bg-background px-4 py-3 text-sm outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/15";
@@ -119,7 +119,7 @@ export function EnquiryForm({ defaultTrip = "" }: { defaultTrip?: string }) {
  <input name="phone" required placeholder="Phone / WhatsApp" autoComplete="tel" className={field}/>
  <select name="destination" defaultValue={defaultTrip||"Kenya & Tanzania"} className={field}><option>Kenya & Tanzania</option><option>Kenya</option><option>Tanzania</option><option>Zanzibar / coast</option><option>Not sure yet</option></select>
  <input name="dates" type="text" placeholder="Travel dates (e.g. July 2027)" className={field}/>
- <select name="travellers" defaultValue="2 travellers" className={field}><option>1 traveller</option><option>2 travellers</option><option>3–4 travellers</option><option>5–8 travellers</option><option>9+ travellers</option></select>
+ <select name="travellers" defaultValue={defaultTravellers || "2 travellers"} className={field}><option>1 traveller</option><option>2 travellers</option><option>3–4 travellers</option><option>5–8 travellers</option><option>9+ travellers</option></select>
  <select name="budget" defaultValue="" className={field}><option value="">Approx. budget per person</option><option>Under $2,000</option><option>$2,000–$4,000</option><option>$4,000–$6,000</option><option>$6,000+</option><option>Not decided</option></select>
  <textarea name="details" rows={4} placeholder="Tell us a little about the safari you have in mind" className={field+" sm:col-span-2"}/>
  <button type="submit" className="rounded-md bg-primary px-6 py-4 text-sm font-bold text-primary-foreground transition hover:-translate-y-0.5 sm:col-span-2">Continue to WhatsApp ↗</button>
