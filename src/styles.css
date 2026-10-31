@@ -701,3 +701,54 @@ main h3, .ba-home h3 {
   .ba-utility { font-size: 0.75rem; }
   .ba-footer-grid a, .ba-footer-grid p { font-size: 0.9375rem; }
 }
+
+
+/* Final readability pass: keep descriptive copy comfortably readable.
+   Compact type is reserved for metadata, navigation and utility labels. */
+main .ba-home p:not(.ba-eyebrow):not(.ba-tour-meta),
+main .ba-home .ba-destination-card p,
+main .ba-home .ba-tour-content > p:not(.ba-tour-meta),
+main .ba-home .ba-feature-list small,
+main .ba-home .ba-planning-cards span,
+main .ba-home .ba-proof-card p:not(.ba-eyebrow),
+main .ba-home .ba-faq-item p,
+main .ba-home .ba-video-modal > div p {
+  font-size: 1rem;
+  line-height: 1.75;
+}
+main .ba-home .ba-destination-card p {
+  line-height: 1.6;
+}
+main .ba-home .ba-combo p:not(.ba-eyebrow),
+main .ba-home .ba-group p:not(.ba-eyebrow),
+main .ba-home .ba-planning p:not(.ba-eyebrow),
+main .ba-home .ba-brochure p:not(.ba-eyebrow),
+main .ba-home .ba-cta > p:not(.ba-eyebrow) {
+  font-size: 1rem;
+  line-height: 1.75;
+}
+main .ba-home .ba-trust {
+  font-size: 0.875rem;
+  line-height: 1.55;
+}
+main .ba-home .ba-tour-content {
+  line-height: 1.65;
+}
+main .ba-home .ba-tour-content h3 {
+  line-height: 1.2;
+}
+@media (max-width: 640px) {
+  main .ba-home p:not(.ba-eyebrow):not(.ba-tour-meta),
+  main .ba-home .ba-destination-card p,
+  main .ba-home .ba-tour-content > p:not(.ba-tour-meta),
+  main .ba-home .ba-feature-list small,
+  main .ba-home .ba-planning-cards span,
+  main .ba-home .ba-proof-card p:not(.ba-eyebrow),
+  main .ba-home .ba-faq-item p {
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+  main .ba-home .ba-trust {
+    font-size: 0.8125rem;
+  }
+}
