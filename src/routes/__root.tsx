@@ -115,6 +115,16 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const [preloaderVisible, setPreloaderVisible] = useState(true);
+
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setPreloaderVisible(false);
+      return;
+    }
+    const timeout = window.setTimeout(() => setPreloaderVisible(false), 950);
+    return () => window.clearTimeout(timeout);
+  }, []);
 
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
@@ -155,7 +165,8 @@ function RootComponent() {
   }, []);
 
   return (
-    <QueryClientProvider client={queryClient}>\n      {preloaderVisible && <div className="ba-preloader" role="status" aria-label="Loading Bahari Asili Safaris"><div className="ba-preloader-panel ba-preloader-panel-left" /><div className="ba-preloader-panel ba-preloader-panel-right" /><div className="ba-preloader-mark"><span>BAHARI ASILI</span><b>SAFARIS</b><i aria-hidden="true">✳</i></div></div>}
+    <QueryClientProvider client={queryClient}>
+      {preloaderVisible && <div className="ba-preloader" role="status" aria-label="Loading Bahari Asili Safaris"><div className="ba-preloader-panel ba-preloader-panel-left" /><div className="ba-preloader-panel ba-preloader-panel-right" /><div className="ba-preloader-mark"><span>BAHARI ASILI</span><b>SAFARIS</b><i aria-hidden="true">✳</i></div></div>}
       <Nav />
       <main>
         <Outlet />
