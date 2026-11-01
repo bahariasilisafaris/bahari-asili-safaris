@@ -44,6 +44,7 @@ export function Nav() {
      <li className="ba-nav-dropdown"><Link to="/itineraries" aria-haspopup="true">Safaris <span aria-hidden="true">⌄</span></Link><div><Link to="/itineraries">Kenya safaris</Link><Link to="/itineraries">Tanzania safaris</Link><Link to="/itineraries">Combined Kenya & Tanzania</Link></div></li>
      <li><Link to="/tours">Tours & packages</Link></li>
      <li className="ba-nav-dropdown"><Link to="/about" aria-haspopup="true">Explore <span aria-hidden="true">⌄</span></Link><div><Link to="/about">About us</Link><Link to="/about">Travel guides</Link></div></li>
+     <li><a href="/#faqs">FAQs</a></li>
      <li><Link to="/contact">Contact</Link></li>
     </ul>
     <Link to="/contact" className="ba-nav-cta">Plan your safari <ArrowRight size={15}/></Link>
@@ -66,7 +67,8 @@ export function Footer() {
   <div className="ba-footer-grid">
   <div><h3>Get in touch</h3><Logo/><p className="mt-4 max-w-xs text-sm leading-7 text-white/65">Kenya & Tanzania</p><a href={"mailto:" + CONTACT.email}>{CONTACT.email}</a><a href={"tel:" + CONTACT.whatsapp}>{CONTACT.phone}</a><a href={"https://wa.me/" + CONTACT.whatsapp} target="_blank" rel="noreferrer">WhatsApp us ↗</a></div>
   <div><h3>Company</h3><Link to="/about">About us</Link><Link to="/contact">Our approach</Link><Link to="/reviews">Guest feedback</Link><Link to="/contact">Contact</Link></div>
-  <div><h3>Safari services</h3><Link to="/destinations">Destinations</Link><Link to="/itineraries">Safari packages</Link><Link to="/tours">Tours & experiences</Link><Link to="/lodges">Safari lodges</Link><Link to="/contact">FAQs & enquiries</Link></div>
+  <div><h3>Safari services</h3><Link to="/destinations">Destinations</Link><Link to="/itineraries">Safari packages</Link><Link to="/tours">Tours & experiences</Link><Link to="/lodges">Safari lodges</Link><a href="/#faqs">Frequently asked questions</a>
+  <Link to="/contact">Enquiries</Link></div>
   <div><h3>Stay updated</h3><p className="text-sm leading-6 text-white/65">Occasional safari inspiration and new itinerary ideas.</p><form className="mt-3 flex w-full gap-1 rounded-md bg-white/10 p-1" onSubmit={e=>{e.preventDefault();const email=new FormData(e.currentTarget).get("newsletter");const subject=encodeURIComponent("Safari updates subscription");const body=encodeURIComponent(`Please add ${email} to occasional Bahari Asili Safaris updates.`);window.location.href=`mailto:${CONTACT.email}?subject=${subject}&body=${body}`;}}><input name="newsletter" type="email" required placeholder="Email address" className="min-w-0 flex-1 bg-transparent px-2 text-xs text-white outline-none placeholder:text-white/50"/><button type="submit" className="rounded bg-[#d77a43] px-3 py-2 text-xs font-bold text-white">Subscribe</button></form><p className="mt-4 text-xs leading-6 text-white/55">For trip questions and travel support, contact our team directly.</p></div>
  </div><div className="ba-footer-bottom"><span>© {new Date().getFullYear()} {BRAND}. All rights reserved.</span><span>Thoughtfully planned journeys across East Africa.</span></div>  <div className="ba-footer-marquee" aria-label="Bahari Asili Safaris">
    <div className="ba-footer-marquee-track">
