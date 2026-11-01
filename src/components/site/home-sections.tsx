@@ -4,7 +4,15 @@ import { ArrowRight, Compass, Globe2, HeartHandshake, MapPin, MessageCircle, Shi
 import { destinations, img, itineraries, CONTACT } from "@/lib/site-data";
 import { EnquiryForm } from "@/components/site/layout";
 
-const heroPhrases = [\n  "Find your wild.",\n  "Follow the call of the wild.",\n  "Wake up to the African sunrise.",\n  "Discover Kenya beyond the ordinary.",\n  "Let the coast slow you down.",\n] as const;\n\nfunction Heading({ eyebrow, title, body }: { eyebrow: string; title: string; body?: string }) {
+const heroPhrases = [
+  "Find your wild.",
+  "Follow the call of the wild.",
+  "Wake up to the African sunrise.",
+  "Discover Kenya beyond the ordinary.",
+  "Let the coast slow you down.",
+] as const;
+
+function Heading({ eyebrow, title, body }: { eyebrow: string; title: string; body?: string }) {
   return <div className="mx-auto mb-10 max-w-2xl text-center"><p className="ba-eyebrow">{eyebrow}</p><h2 className="ba-heading mt-3">{title}</h2>{body && <p className="mt-4 text-sm leading-7 text-[var(--ba-muted)] sm:text-base">{body}</p>}</div>;
 }
 
@@ -14,7 +22,16 @@ export function HomeExperience() {
   const [travellers, setTravellers] = useState("Any group");
   const [quoteOpen, setQuoteOpen] = useState(false);
   const [activeFaq, setActiveFaq] = useState(0);
-  const [filtered, setFiltered] = useState(false);\n  const [heroPhrase, setHeroPhrase] = useState(0);\n\n  useEffect(() => {\n    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;\n    const interval = window.setInterval(() => {\n      setHeroPhrase((current) => (current + 1) % heroPhrases.length);\n    }, 4600);\n    return () => window.clearInterval(interval);\n  }, []);
+  const [filtered, setFiltered] = useState(false);
+  const [heroPhrase, setHeroPhrase] = useState(0);
+
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const interval = window.setInterval(() => {
+      setHeroPhrase((current) => (current + 1) % heroPhrases.length);
+    }, 4600);
+    return () => window.clearInterval(interval);
+  }, []);
   const tours = useMemo(() => itineraries.filter((tour) => {
     const byPlace = destination === "Any destination" || tour.country === destination || (destination === "Both countries");
     const byDays = duration === "Any duration" || (duration === "1–5 days" ? tour.days <= 5 : duration === "6–9 days" ? tour.days >= 6 && tour.days <= 9 : tour.days >= 10);
