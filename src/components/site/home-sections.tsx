@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { ArrowRight, Compass, Globe2, HeartHandshake, MapPin, MessageCircle, ShieldCheck, Sparkles, X, Plane, CalendarDays, Users, ChevronDown, Play } from "lucide-react";
+import { ArrowRight, Compass, Globe2, HeartHandshake, MapPin, MessageCircle, ShieldCheck, Sparkles, X, Plane, CalendarDays, Users, ChevronDown } from "lucide-react";
 import { destinations, img, itineraries, CONTACT } from "@/lib/site-data";
 import { EnquiryForm } from "@/components/site/layout";
 
@@ -13,7 +13,6 @@ export function HomeExperience() {
   const [duration, setDuration] = useState("Any duration");
   const [travellers, setTravellers] = useState("Any group");
   const [quoteOpen, setQuoteOpen] = useState(false);
-  const [videoOpen, setVideoOpen] = useState(false);
   const [activeFaq, setActiveFaq] = useState(0);
   const [filtered, setFiltered] = useState(false);
   const tours = useMemo(() => itineraries.filter((tour) => {
@@ -72,7 +71,7 @@ export function HomeExperience() {
     <section className="ba-section ba-difference"><div className="ba-difference-image"><img src={img.jeep} alt="Safari vehicle exploring the open plains" loading="lazy"/><span>Curiosity leads the way.</span></div><div><p className="ba-eyebrow">THE BAHARI ASILI APPROACH</p><h2 className="ba-heading">The details make the difference.</h2><p className="mt-4 text-[var(--ba-muted)] leading-7">A rewarding safari is more than a list of places. It’s a journey with the right rhythm, considered connections and room for the unexpected.</p><div className="ba-feature-list"><div><Compass/><span><b>Thoughtful routes</b><small>Journeys designed around geography, season and the time you have.</small></span></div><div><HeartHandshake/><span><b>Personal planning</b><small>A conversation-led approach to shaping the trip around your interests.</small></span></div><div><MapPin/><span><b>Regional variety</b><small>Wildlife, landscapes, culture and coast across East Africa.</small></span></div><div><Sparkles/><span><b>Flexible by design</b><small>Use an existing itinerary as a starting point, then make it yours.</small></span></div></div></div></section>
 
     
-    <section className="ba-section ba-process" aria-labelledby="ba-process-title">
+    <section className="ba-section ba-process">
       <Heading eyebrow="A clear way to begin" title="From first idea to a journey that feels yours" body="A thoughtful safari starts with a conversation. We’ll help you work through the details, one step at a time."/>
       <div className="ba-process-grid">
         <article><span>01</span><div><h3>Tell us what you’re imagining</h3><p>Share your dates, group size, destinations of interest and the kind of experience you enjoy.</p></div></article>
@@ -82,9 +81,9 @@ export function HomeExperience() {
       </div>
     </section>
 
-    <section className="ba-video-section"><Heading eyebrow="A glimpse of the journey" title="Let the landscapes speak" body="A little inspiration for the places and experiences waiting across East Africa."/><div className="ba-video-grid">{([[img.migration,"Across the Maasai Mara"],[img.beach,"From safari plains to the coast"]] as const).map(([image,title])=><button key={title} className="ba-video-card" onClick={()=>setVideoOpen(true)}><img src={image} alt={title} loading="lazy"/><span className="ba-play"><Play fill="currentColor"/></span><b>{title}</b></button>)}</div><p className="ba-note">TODO: Replace these image-led video placeholders with Bahari Asili Safaris footage.</p></section>
+    <section className="ba-video-section"><Heading eyebrow="A glimpse of the journey" title="Let the landscapes speak" body="A little inspiration for the places and experiences waiting across East Africa."/><div className="ba-video-grid">{([[img.migration,"Across the Maasai Mara"],[img.beach,"From safari plains to the coast"]] as const).map(([image,title])=><article key={title} className="ba-video-card"><img src={image} alt={title} loading="lazy"/><b>{title}</b></article>)}</div></section>
 
-    <section className="ba-section ba-proof"><Heading eyebrow="Confidence in every detail" title="A safari company you can get to know" body="We believe trust starts with clear information and a real conversation. We’ll share the details of your proposed journey before you make a decision."/><div className="ba-proof-grid"><div className="ba-proof-card"><ShieldCheck size={30}/><h3>Licensing & recognition</h3><p>Company registrations, tourism licences and verified memberships will be listed here once supplied and confirmed.</p><small>TODO: Add verified licences and association memberships.</small></div><div className="ba-proof-card ba-proof-review"><p className="ba-eyebrow">GUEST FEEDBACK</p><h3>Real journeys. Real voices.</h3><p>We’re preparing this space for verified guest reviews. Until then, speak with our team about your plans and questions.</p><Link to="/contact" className="ba-text-link">Talk to our team <ArrowRight size={16}/></Link><small>TODO: Add approved review platform links and verified testimonials.</small></div></div></section>
+    <section className="ba-section ba-proof"><Heading eyebrow="Confidence in every detail" title="A safari company you can get to know" body="We believe trust starts with clear information and a real conversation. We’ll share the details of your proposed journey before you make a decision."/><div className="ba-proof-grid"><div className="ba-proof-card"><ShieldCheck size={30}/><h3>Licensing & recognition</h3><p>Company registrations, tourism licences and verified memberships will be listed here once supplied and confirmed.</p><small>Verified details will be published here when documentation is available.</small></div><div className="ba-proof-card ba-proof-review"><p className="ba-eyebrow">GUEST FEEDBACK</p><h3>Real journeys. Real voices.</h3><p>We’re preparing this space for verified guest reviews. Until then, speak with our team about your plans and questions.</p><Link to="/contact" className="ba-text-link">Talk to our team <ArrowRight size={16}/></Link><small>Only approved, verifiable guest feedback will be published here.</small></div></div></section>
 
     <section className="ba-section ba-faq" id="faqs"><Heading eyebrow="Good to know" title="Kenya & Tanzania safari FAQs" body="A few helpful answers as you begin planning your East Africa journey."/><script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(faqSchema)}}/><div className="ba-faq-grid">{faqs.map(([q,a],i)=><div className="ba-faq-item" key={q}><button aria-expanded={activeFaq===i} onClick={()=>setActiveFaq(activeFaq===i?-1:i)}><span>{q}</span><ChevronDown className={activeFaq===i?"rotate-180":""}/></button>{activeFaq===i&&<p>{a}</p>}</div>)}</div></section>
 
@@ -99,6 +98,6 @@ export function HomeExperience() {
     <section className="ba-partners"><p className="ba-eyebrow">OUR INDUSTRY CONNECTIONS</p><p>Verified partners and memberships will be shown here once confirmed.</p><small>TODO: Supply approved partner and association logos. No affiliations are implied.</small></section>
 
     <button className="ba-custom-trip" onClick={()=>setQuoteOpen(true)}>Customise my trip <ArrowRight size={15}/></button>\n    {quoteOpen&&<div className="ba-modal-backdrop" role="presentation" onMouseDown={e=>{if(e.target===e.currentTarget)setQuoteOpen(false)}}><div className="ba-modal" role="dialog" aria-modal="true" aria-labelledby="quote-title"><button className="ba-modal-close" aria-label="Close enquiry form" onClick={()=>setQuoteOpen(false)}><X/></button><p className="ba-eyebrow">START PLANNING</p><h2 id="quote-title" className="ba-heading mb-5">Tell us about your safari</h2><EnquiryForm defaultTrip={destination === "Kenya" || destination === "Tanzania" ? destination : ""} defaultTravellers={travellers === "Any group" ? "" : travellers} /><p className="ba-note">Your enquiry opens WhatsApp so you can review and send it to our team.</p></div></div>}
-    {videoOpen&&<div className="ba-modal-backdrop" role="presentation" onMouseDown={e=>{if(e.target===e.currentTarget)setVideoOpen(false)}}><div className="ba-video-modal" role="dialog" aria-modal="true" aria-label="Safari video placeholder"><button className="ba-modal-close" aria-label="Close video" onClick={()=>setVideoOpen(false)}><X/></button><img src={img.hero} alt="East African safari landscape" /><div><Play/><b>Video coming soon</b><p>TODO: Add Bahari Asili Safaris video footage and hosted video URLs.</p></div></div></div>}
+    {videoOpen&&}
   </div>;
 }
