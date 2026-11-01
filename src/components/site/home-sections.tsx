@@ -1,10 +1,10 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { ArrowRight, Compass, Globe2, HeartHandshake, MapPin, MessageCircle, ShieldCheck, Sparkles, X, Plane, CalendarDays, Users, ChevronDown } from "lucide-react";
 import { destinations, img, itineraries, CONTACT } from "@/lib/site-data";
 import { EnquiryForm } from "@/components/site/layout";
 
-function Heading({ eyebrow, title, body }: { eyebrow: string; title: string; body?: string }) {
+const heroPhrases = [\n  "Find your wild.",\n  "Follow the call of the wild.",\n  "Wake up to the African sunrise.",\n  "Discover Kenya beyond the ordinary.",\n  "Let the coast slow you down.",\n] as const;\n\nfunction Heading({ eyebrow, title, body }: { eyebrow: string; title: string; body?: string }) {
   return <div className="mx-auto mb-10 max-w-2xl text-center"><p className="ba-eyebrow">{eyebrow}</p><h2 className="ba-heading mt-3">{title}</h2>{body && <p className="mt-4 text-sm leading-7 text-[var(--ba-muted)] sm:text-base">{body}</p>}</div>;
 }
 
@@ -14,7 +14,7 @@ export function HomeExperience() {
   const [travellers, setTravellers] = useState("Any group");
   const [quoteOpen, setQuoteOpen] = useState(false);
   const [activeFaq, setActiveFaq] = useState(0);
-  const [filtered, setFiltered] = useState(false);
+  const [filtered, setFiltered] = useState(false);\n  const [heroPhrase, setHeroPhrase] = useState(0);\n\n  useEffect(() => {\n    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;\n    const interval = window.setInterval(() => {\n      setHeroPhrase((current) => (current + 1) % heroPhrases.length);\n    }, 4600);\n    return () => window.clearInterval(interval);\n  }, []);
   const tours = useMemo(() => itineraries.filter((tour) => {
     const byPlace = destination === "Any destination" || tour.country === destination || (destination === "Both countries");
     const byDays = duration === "Any duration" || (duration === "1–5 days" ? tour.days <= 5 : duration === "6–9 days" ? tour.days >= 6 && tour.days <= 9 : tour.days >= 10);
@@ -40,7 +40,7 @@ export function HomeExperience() {
       <div className="ba-hero-shade" />
       <div className="ba-hero-copy">
         <p className="ba-eyebrow ba-eyebrow-light">KENYA · TANZANIA · EAST AFRICA</p>
-        <h1>Wild Africa.<br/><em>Wonderfully personal.</em></h1>
+        <h1>Wild Africa.<br/><em key={heroPhrase} className="ba-hero-rotating" aria-live="polite" aria-atomic="true">{heroPhrases[heroPhrase]}</em></h1>
         <p>Discover the wild beauty of Kenya and Tanzania on a safari shaped around your interests, your pace and the moments you want to remember.</p>
         <div className="ba-hero-actions">
           <button className="ba-button" onClick={() => setQuoteOpen(true)}>Plan your safari <ArrowRight size={16}/></button>
