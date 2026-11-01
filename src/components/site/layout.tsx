@@ -40,7 +40,7 @@ export function Nav() {
     <Logo/>
     <ul className="ba-nav-links">
      <li><Link to="/">Home</Link></li>
-     <li className="ba-nav-dropdown"><Link to="/destinations" aria-haspopup="true">Destinations <span aria-hidden="true">⌄</span></Link><div><Link to="/destinations">Maasai Mara</Link><Link to="/destinations">Amboseli</Link><Link to="/destinations">Serengeti</Link><Link to="/destinations">Zanzibar</Link><Link to="/destinations">All destinations</Link></div></li>
+     <li className="ba-nav-dropdown"><Link to="/destinations" aria-haspopup="true">Destinations <span aria-hidden="true">⌄</span></Link><div><Link to="/destinations/$slug" params={{ slug: "maasai-mara" }}>Maasai Mara</Link><Link to="/destinations/$slug" params={{ slug: "amboseli" }}>Amboseli</Link><Link to="/destinations/$slug" params={{ slug: "serengeti" }}>Serengeti</Link><Link to="/destinations/$slug" params={{ slug: "zanzibar" }}>Zanzibar</Link><Link to="/destinations">All destinations</Link></div></li>
      <li className="ba-nav-dropdown"><Link to="/itineraries" aria-haspopup="true">Safaris <span aria-hidden="true">⌄</span></Link><div><Link to="/itineraries">Kenya safaris</Link><Link to="/itineraries">Tanzania safaris</Link><Link to="/itineraries">Combined Kenya & Tanzania</Link></div></li>
      <li><Link to="/tours">Tours & packages</Link></li>
      <li className="ba-nav-dropdown"><Link to="/about" aria-haspopup="true">Explore <span aria-hidden="true">⌄</span></Link><div><Link to="/about">About us</Link><Link to="/about">Travel guides</Link></div></li>
@@ -51,7 +51,7 @@ export function Nav() {
    </nav>
    {open&&<div id="ba-mobile-navigation" className="ba-mobile-menu">
     <Link to="/" onClick={()=>setOpen(false)}>Home<ArrowRight size={15}/></Link>
-    <div className="ba-mobile-group"><button aria-expanded={mobileSafaris} onClick={()=>setMobileSafaris(!mobileSafaris)}>Destinations <span>{mobileSafaris?"−":"+"}</span></button>{mobileSafaris&&<div><Link to="/destinations" onClick={()=>setOpen(false)}>All destinations</Link><Link to="/destinations" onClick={()=>setOpen(false)}>Maasai Mara & Amboseli</Link><Link to="/destinations" onClick={()=>setOpen(false)}>Serengeti & Zanzibar</Link></div>}</div>
+    <div className="ba-mobile-group"><button aria-expanded={mobileSafaris} onClick={()=>setMobileSafaris(!mobileSafaris)}>Destinations <span>{mobileSafaris?"−":"+"}</span></button>{mobileSafaris&&<div><Link to="/destinations" onClick={()=>setOpen(false)}>All destinations</Link><Link to="/destinations/$slug" params={{ slug: "maasai-mara" }} onClick={()=>setOpen(false)}>Maasai Mara</Link><Link to="/destinations/$slug" params={{ slug: "amboseli" }} onClick={()=>setOpen(false)}>Amboseli</Link><Link to="/destinations/$slug" params={{ slug: "serengeti" }} onClick={()=>setOpen(false)}>Serengeti</Link><Link to="/destinations/$slug" params={{ slug: "zanzibar" }} onClick={()=>setOpen(false)}>Zanzibar</Link></div>}</div>
     <div className="ba-mobile-group"><button aria-expanded={mobileExplore} onClick={()=>setMobileExplore(!mobileExplore)}>Safari journeys <span>{mobileExplore?"−":"+"}</span></button>{mobileExplore&&<div><Link to="/itineraries" onClick={()=>setOpen(false)}>Kenya safaris</Link><Link to="/itineraries" onClick={()=>setOpen(false)}>Tanzania safaris</Link><Link to="/itineraries" onClick={()=>setOpen(false)}>Tours & packages</Link></div>}</div>
     <Link to="/about" onClick={()=>setOpen(false)}>About us & travel guides<ArrowRight size={15}/></Link>
     <Link to="/contact" onClick={()=>setOpen(false)}>Contact<ArrowRight size={15}/></Link>
@@ -119,7 +119,7 @@ export function EnquiryForm({ defaultTrip = "", defaultTravellers = "" }: { defa
  <input name="phone" required placeholder="Phone / WhatsApp" autoComplete="tel" className={field}/>
  <select name="destination" defaultValue={defaultTrip||"Kenya & Tanzania"} className={field}><option>Kenya & Tanzania</option><option>Kenya</option><option>Tanzania</option><option>Zanzibar / coast</option><option>Not sure yet</option></select>
  <input name="dates" type="text" placeholder="Travel dates (e.g. July 2027)" className={field}/>
- <select name="travellers" defaultValue={defaultTravellers || "2 travellers"} className={field}><option>1 traveller</option><option>2 travellers</option><option>3–4 travellers</option><option>5–8 travellers</option><option>9+ travellers</option></select>
+ <select name="travellers" defaultValue={defaultTravellers || "2 travellers"} className={field}><option>1 traveller</option><option>2 travellers</option><option>1–2 travellers</option><option>3–4 travellers</option><option>5+ travellers</option><option>5–8 travellers</option><option>9+ travellers</option></select>
  <select name="budget" defaultValue="" className={field}><option value="">Approx. budget per person</option><option>Under $2,000</option><option>$2,000–$4,000</option><option>$4,000–$6,000</option><option>$6,000+</option><option>Not decided</option></select>
  <textarea name="details" rows={4} placeholder="Tell us a little about the safari you have in mind" className={field+" sm:col-span-2"}/>
  <button type="submit" className="rounded-md bg-primary px-6 py-4 text-sm font-bold text-primary-foreground transition hover:-translate-y-0.5 sm:col-span-2">Continue to WhatsApp ↗</button>
