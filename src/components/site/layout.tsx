@@ -64,7 +64,7 @@ export function Nav() {
 }
 
 export function Footer() {
- return <footer className="ba-footer">
+ return <footer className="ba-footer masai-texture masai-texture--dark"><div className="masai-edge-colour" aria-hidden="true" />
   <div className="ba-footer-grid">
   <div><h3>Get in touch</h3><Logo/><p className="mt-4 max-w-xs text-sm leading-7 text-white/65">Kenya & Tanzania</p><a href={"mailto:" + CONTACT.email}>{CONTACT.email}</a><a href={"tel:" + CONTACT.whatsapp}>{CONTACT.phone}</a><a href={"https://wa.me/" + CONTACT.whatsapp} target="_blank" rel="noreferrer">WhatsApp us ↗</a></div>
   <div><h3>Company</h3><Link to="/about">About us</Link><Link to="/contact">Our approach</Link><Link to="/reviews">Guest feedback</Link><Link to="/contact">Contact</Link></div>

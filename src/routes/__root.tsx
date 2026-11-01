@@ -8,7 +8,7 @@ import {
   Scripts,
   type ErrorComponentProps,
 } from "@tanstack/react-router";
-import { useEffect, type ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { Nav, Footer, FloatingWhatsApp } from "@/components/site/layout";
@@ -155,7 +155,7 @@ function RootComponent() {
   }, []);
 
   return (
-    <QueryClientProvider client={queryClient}>
+    <QueryClientProvider client={queryClient}>\n      {preloaderVisible && <div className="ba-preloader" role="status" aria-label="Loading Bahari Asili Safaris"><div className="ba-preloader-panel ba-preloader-panel-left" /><div className="ba-preloader-panel ba-preloader-panel-right" /><div className="ba-preloader-mark"><span>BAHARI ASILI</span><b>SAFARIS</b><i aria-hidden="true">✳</i></div></div>}
       <Nav />
       <main>
         <Outlet />
