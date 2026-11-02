@@ -126,7 +126,7 @@ function RootComponent() {
     }
     body.classList.add("ba-loading");
     const startedAt = window.performance.now();
-    const duration = 3200;
+    const duration = 5000;
     let frame = 0;
     const tick = (now: number) => {
       const progress = Math.min(100, Math.round(((now - startedAt) / duration) * 100));
@@ -209,7 +209,15 @@ function RootComponent() {
                   </div>
                   <i className="ba-preloader-dot ba-preloader-dot--end" /><span>MAASAI MARA</span>
                 </div>
-                <p className="ba-preloader-hint">PREPARING YOUR SAFARI JOURNEY</p>
+                <p className="ba-preloader-hint" key={Math.min(4, Math.floor(preloaderProgress / 20))} aria-live="off">
+                  {[
+                    "Every great journey begins with wonder.",
+                    "Across open plains, new stories unfold.",
+                    "Follow the rhythm of the wild.",
+                    "From ocean horizons to endless savannahs.",
+                    "Your East African adventure is taking shape.",
+                  ][Math.min(4, Math.floor(preloaderProgress / 20))]}
+                </p>
               </div>
             </div>
           ))}

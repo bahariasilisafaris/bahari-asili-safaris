@@ -843,8 +843,8 @@ main .ba-home .ba-tour-content h3 {
 body.ba-loading { overflow:hidden; }
 .ba-preloader { position:fixed; inset:0; z-index:10000; display:block; overflow:hidden; background:radial-gradient(70% 90% at 50% 50%,#0e4a5c 0%,#061c28 70%); pointer-events:all; isolation:isolate; }
 .ba-preloader-half { position:absolute; left:0; right:0; height:50%; overflow:hidden; background:radial-gradient(70% 90% at 50% 100%,#0e4a5c 0%,#061c28 70%); transition:transform 1.15s cubic-bezier(.77,0,.18,1); will-change:transform; }
-.ba-preloader-half--top { top:0; animation:ba-half-top 1.15s 3.15s cubic-bezier(.77,0,.18,1) forwards; }
-.ba-preloader-half--bottom { bottom:0; background:radial-gradient(70% 90% at 50% 0%,#0e4a5c 0%,#061c28 70%); animation:ba-half-bottom 1.15s 3.15s cubic-bezier(.77,0,.18,1) forwards; }
+.ba-preloader-half--top { top:0; animation:ba-half-top 1.15s 4.95s cubic-bezier(.77,0,.18,1) forwards; }
+.ba-preloader-half--bottom { bottom:0; background:radial-gradient(70% 90% at 50% 0%,#0e4a5c 0%,#061c28 70%); animation:ba-half-bottom 1.15s 4.95s cubic-bezier(.77,0,.18,1) forwards; }
 .ba-preloader-half--top .ba-preloader-scene { top:0; }
 .ba-preloader-half--bottom .ba-preloader-scene { top:-50svh; }
 .ba-preloader-scene { position:absolute; left:0; right:0; height:100svh; display:grid; align-content:center; justify-items:center; gap:22px; color:#fff; padding:24px; }
@@ -867,12 +867,13 @@ body.ba-loading { overflow:hidden; }
 .ba-preloader-rail svg { position:absolute; top:-10px; width:20px; height:20px; fill:#fff; transform:translateX(-50%) rotate(90deg); filter:drop-shadow(0 0 6px rgba(255,255,255,.7)); transition:left .08s linear; }
 .ba-preloader-dot { flex:0 0 8px; width:8px; height:8px; border-radius:50%; background:#fff; }
 .ba-preloader-dot--end { background:transparent; border:1px solid #fff; }
-.ba-preloader-hint { color:rgb(255 255 255 / 58%); font-size:10px; letter-spacing:.16em; }
+.ba-preloader-hint { width:min(520px,88vw); min-height:30px; margin:0; color:rgb(255 255 255 / 88%); font-size:clamp(13px,1.35vw,16px); font-weight:500; letter-spacing:.015em; line-height:1.5; text-align:center; animation:ba-hint-arrive .45s ease both; }
+@keyframes ba-hint-arrive { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
 @keyframes ba-half-top { to { transform:translateY(-100%); } }
 @keyframes ba-half-bottom { to { transform:translateY(100%); } }
 @keyframes ba-globe-spin { 0% { transform:scaleX(.08); } 50% { transform:scaleX(1); } 100% { transform:scaleX(.08); } }
 @keyframes ba-orbit { to { transform:rotate(360deg); } }
-@media(max-width:560px) { .ba-preloader-globe { width:120px; height:120px; } .ba-preloader-brand { font-size:15px; } .ba-preloader-route { gap:7px; font-size:8px; letter-spacing:.1em; } .ba-preloader-hint { font-size:8px; } }
+@media(max-width:560px) { .ba-preloader-hint { font-size:12px; min-height:36px; } .ba-preloader-globe { width:120px; height:120px; } .ba-preloader-brand { font-size:15px; } .ba-preloader-route { gap:7px; font-size:8px; letter-spacing:.1em; } .ba-preloader-hint { font-size:8px; } }
 @media(prefers-reduced-motion:reduce) { .ba-preloader { display:none!important; } .ba-preloader-half,.ba-preloader-globe::before,.ba-globe-orbit,.ba-globe-meridian { animation:none!important; transition:none!important; } }
 /* Reference landing styling adapted to existing itinerary and enquiry journeys. */
 .ba-hero { min-height:min(84vh,760px); border-radius:28px; margin:12px 14px 0; }
