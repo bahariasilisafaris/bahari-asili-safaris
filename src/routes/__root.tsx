@@ -138,7 +138,7 @@ function RootComponent() {
       setPreloaderProgress(100);
       setPreloaderVisible(false);
       body.classList.remove("ba-loading");
-    }, duration + 350);
+    }, duration + 1200);
     return () => {
       window.cancelAnimationFrame(frame);
       window.clearTimeout(timeout);
