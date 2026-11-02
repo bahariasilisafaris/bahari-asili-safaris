@@ -56,12 +56,12 @@ export function HomeExperience() {
       </video>
       <div className="ba-hero-shade" />
       <div className="ba-hero-copy">
-        <p className="ba-eyebrow ba-eyebrow-light">KENYA · TANZANIA · EAST AFRICA</p>
-        <h1>Wild Africa.<br/><em key={heroPhrase} className="ba-hero-rotating" aria-live="polite" aria-atomic="true">{heroPhrases[heroPhrase]}</em></h1>
-        <p>Discover the wild beauty of Kenya and Tanzania on a safari shaped around your interests, your pace and the moments you want to remember.</p>
+        <p className="ba-eyebrow ba-eyebrow-light">PRIVATE & GROUP SAFARIS · EAST AFRICA</p>
+        <h1>East Africa,<br/><em key={heroPhrase} className="ba-hero-rotating" aria-live="polite" aria-atomic="true">{heroPhrases[heroPhrase]}</em></h1>
+        <p>Explore Kenya and Tanzania with a thoughtfully planned safari, clear advice and an itinerary shaped around your dates, interests and pace.</p>
         <div className="ba-hero-actions">
-          <button className="ba-button" onClick={() => setQuoteOpen(true)}>Plan your safari <ArrowRight size={16}/></button>
-          <a className="ba-button ba-button-outline" href="#safaris">Explore safari journeys</a>
+          <button className="ba-button" onClick={() => setQuoteOpen(true)}>Plan my safari <ArrowRight size={16}/></button>
+          <a className="ba-button ba-button-outline" href="#safaris">View safari journeys</a>
         </div>
         <div className="ba-trust"><span><ShieldCheck size={16}/> Personal trip planning</span><span><Globe2 size={16}/> Kenya & Tanzania</span><span><HeartHandshake size={16}/> Journeys shaped around you</span></div>
       </div>
@@ -77,6 +77,23 @@ export function HomeExperience() {
       <Heading eyebrow="Explore East Africa" title="A remarkable region, many ways to explore" body="From open savannah and volcanic highlands to warm Indian Ocean shores, discover the places that make your journey your own."/>
       <div className="ba-destination-grid">{destinations.slice(0,4).map((place,i)=><Link key={place.slug} to="/destinations/$slug" params={{slug:place.slug}} className="ba-destination-card"><img src={place.image} alt={place.name} loading="lazy"/><div><small>{place.country}</small><h3>{place.name}</h3><p>{place.body}</p></div><span className="ba-round-arrow"><ArrowRight size={18}/></span></Link>)}</div>
       <div className="mt-8 text-center"><Link className="ba-text-link" to="/destinations">View all destinations <ArrowRight size={16}/></Link></div>
+    </section>
+
+    <section className="ba-reference-about" id="about">
+      <div className="ba-reference-about-lead">
+        <div className="ba-reference-about-photo"><img src={img.lodge} alt="A safari lodge in the East African landscape" loading="lazy"/></div>
+        <p className="ba-eyebrow mt-4">ABOUT BAHARI ASILI</p>
+      </div>
+      <div className="ba-reference-about-copy">
+        <h2>Safaris that are practical to arrange, thoughtful to experience and shaped around your pace.</h2>
+        <p>From Kenya’s celebrated parks to Tanzania’s wide-open plains and the Indian Ocean coast, we help bring the details of your journey together. Start with an itinerary or tell us what you have in mind.</p>
+        <Link to="/about" className="ba-text-link">Get to know us <ArrowRight size={16}/></Link>
+      </div>
+    </section>
+    <section className="ba-reference-features" aria-label="How we plan your safari">
+      <article><span><Compass size={22}/></span><h3>Thoughtful itineraries</h3><p>Routes and daily plans considered around your dates, interests and available time.</p></article>
+      <article><span><MapPin size={22}/></span><h3>Local perspective</h3><p>Explore destinations across East Africa with clear, practical planning support.</p></article>
+      <article><span><MessageCircle size={22}/></span><h3>Direct conversation</h3><p>Talk through your questions and preferences with our team before you decide.</p></article>
     </section>
 
     <section className="ba-combo-wrap"><div className="ba-combo masai-texture masai-texture--dark"><div><p className="ba-eyebrow ba-eyebrow-light">ONE JOURNEY · TWO COUNTRIES</p><h2>Why choose one when you can experience both?</h2><p>Connect Kenya’s iconic wildlife country with Tanzania’s vast plains. We’ll help you plan a route that makes sense for your dates and pace.</p><button className="ba-button ba-button-light" onClick={()=>setQuoteOpen(true)}>Plan a combined safari <ArrowRight size={16}/></button></div><div className="ba-route" aria-label="Illustrative route connecting Nairobi, Maasai Mara, Serengeti and Zanzibar"><div className="ba-route-line"/>{[["Nairobi","8%","12%"],["Maasai Mara","32%","35%"],["Serengeti","61%","20%"],["Zanzibar","85%","66%"]].map(([name,left,top])=><span key={name} className="ba-route-stop" style={{left,top}}><i/>{name}</span>)}</div></div></section>

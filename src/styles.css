@@ -893,3 +893,119 @@ body.ba-loading { overflow:hidden; }
 .ba-search { grid-template-columns:1fr 1fr; margin:-42px 14px 0; padding:14px; }
 .ba-search label { min-height:48px; border-right:0; border-bottom:1px solid var(--ba-line); padding:4px 8px 10px; }
 }
+
+
+/* Homepage alignment with the supplied landing-page reference.
+   Keep the existing router, navigation, itinerary data and enquiry interactions intact. */
+.ba-home .ba-hero {
+  min-height: min(82vh, 720px);
+  margin: 12px 18px 0;
+  border-radius: 26px;
+}
+.ba-home .ba-hero-copy {
+  max-width: 1240px;
+  padding: clamp(88px, 11vh, 138px) clamp(28px, 6vw, 82px) 158px;
+  text-align: left;
+}
+.ba-home .ba-hero-copy h1 {
+  max-width: 12ch;
+  font-size: clamp(3.25rem, 6.4vw, 6.25rem);
+  line-height: 1.02;
+  margin-top: 20px;
+}
+.ba-home .ba-hero-copy > p:not(.ba-eyebrow) {
+  max-width: 560px;
+  margin: 22px 0 0;
+}
+.ba-home .ba-hero-actions { justify-content: flex-start; }
+.ba-home .ba-trust { justify-content: flex-start; }
+.ba-home .ba-search {
+  max-width: 1080px;
+  border: 1px solid #e5ebeb;
+  border-radius: 18px;
+  box-shadow: 0 20px 55px rgb(16 75 89 / 13%);
+}
+.ba-reference-about {
+  display: grid;
+  grid-template-columns: minmax(220px, .72fr) 1.6fr;
+  align-items: center;
+  gap: clamp(32px, 6vw, 86px);
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 92px clamp(22px, 5vw, 64px) 52px;
+}
+.ba-reference-about-photo {
+  height: 190px;
+  overflow: hidden;
+  border-radius: 18px;
+}
+.ba-reference-about-photo img { width:100%; height:100%; object-fit:cover; }
+.ba-reference-about-copy h2 {
+  max-width: 850px;
+  color: var(--brand-text);
+  font-family: var(--font-display);
+  font-size: clamp(1.7rem, 3vw, 2.65rem);
+  font-weight: 650;
+  line-height: 1.32;
+  letter-spacing: -.035em;
+}
+.ba-reference-about-copy > p {
+  max-width: 760px;
+  margin-top: 18px;
+  color: var(--ba-muted);
+}
+.ba-reference-about-copy .ba-text-link { margin-top: 18px; }
+.ba-reference-features {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 clamp(22px, 5vw, 64px) 78px;
+}
+.ba-reference-features article {
+  padding: 28px 26px;
+  border-radius: 17px;
+  background: var(--brand-sand);
+}
+.ba-reference-features article > span {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  margin-bottom: 18px;
+  border-radius: 50%;
+  color: white;
+  background: var(--brand-primary-deep);
+}
+.ba-reference-features h3 {
+  color: var(--brand-text);
+  font-size: 1.1rem;
+  font-weight: 750;
+}
+.ba-reference-features p {
+  margin-top: 8px;
+  color: var(--ba-muted);
+  font-size: .95rem;
+  line-height: 1.65;
+}
+.ba-home .ba-destination-card,
+.ba-home .ba-tour-card,
+.ba-home .ba-combo,
+.ba-home .ba-group,
+.ba-home .ba-cta { border-radius: 18px; }
+@media (max-width: 767px) {
+  .ba-home .ba-hero { min-height: 670px; margin: 8px 8px 0; border-radius: 18px; }
+  .ba-home .ba-hero-copy { padding: 100px 22px 145px; text-align: left; }
+  .ba-home .ba-hero-copy h1 { margin: 18px 0 0; font-size: clamp(2.9rem, 12vw, 4.5rem); }
+  .ba-home .ba-hero-copy > p:not(.ba-eyebrow) { margin: 20px 0 0; }
+  .ba-home .ba-hero-actions { justify-content: flex-start; }
+  .ba-reference-about { grid-template-columns: 1fr; gap: 22px; padding: 66px 20px 34px; }
+  .ba-reference-about-photo { height: 180px; }
+  .ba-reference-about-copy h2 { font-size: clamp(1.65rem, 7vw, 2.2rem); }
+  .ba-reference-features { grid-template-columns: 1fr; gap: 12px; padding: 0 20px 62px; }
+  .ba-reference-features article { padding: 22px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ba-home .ba-hero-rotating { animation: none; }
+}
