@@ -57,7 +57,7 @@ export function Nav() {
     <Link to="/about" onClick={()=>setOpen(false)}>About us & travel guides<ArrowRight size={15}/></Link>
     <a href="/#faqs" onClick={()=>setOpen(false)}>Frequently asked questions<ArrowRight size={15}/></a>
     <Link to="/contact" onClick={()=>setOpen(false)}>Contact<ArrowRight size={15}/></Link>
-    <Link to="/contact" className="ba-mobile-quote" onClick={()=>setOpen(false)}>Get a free quote <ArrowRight size={15}/></Link>
+    <Link to="/contact" className="ba-mobile-quote" onClick={()=>setOpen(false)}>Plan your safari <ArrowRight size={15}/></Link>
    </div>}
   </header>
  </>;

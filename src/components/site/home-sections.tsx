@@ -4,14 +4,6 @@ import { ArrowRight, Compass, Globe2, HeartHandshake, MapPin, MessageCircle, Shi
 import { destinations, img, itineraries, CONTACT } from "@/lib/site-data";
 import { EnquiryForm } from "@/components/site/layout";
 
-const heroPhrases = [
-  "Find your wild.",
-  "Follow the call of the wild.",
-  "Wake up to the African sunrise.",
-  "Discover Kenya beyond the ordinary.",
-  "Let the coast slow you down.",
-] as const;
-
 function Heading({ eyebrow, title, body }: { eyebrow: string; title: string; body?: string }) {
   return <div className="mx-auto mb-10 max-w-2xl text-center"><p className="ba-eyebrow">{eyebrow}</p><h2 className="ba-heading mt-3">{title}</h2>{body && <p className="mt-4 text-sm leading-7 text-[var(--ba-muted)] sm:text-base">{body}</p>}</div>;
 }
@@ -23,15 +15,7 @@ export function HomeExperience() {
   const [quoteOpen, setQuoteOpen] = useState(false);
   const [activeFaq, setActiveFaq] = useState(0);
   const [filtered, setFiltered] = useState(false);
-  const [heroPhrase, setHeroPhrase] = useState(0);
 
-  useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const interval = window.setInterval(() => {
-      setHeroPhrase((current) => (current + 1) % heroPhrases.length);
-    }, 4600);
-    return () => window.clearInterval(interval);
-  }, []);
   const tours = useMemo(() => itineraries.filter((tour) => {
     const byPlace = destination === "Any destination" || tour.country === destination || (destination === "Both countries");
     const byDays = duration === "Any duration" || (duration === "1–5 days" ? tour.days <= 5 : duration === "6–9 days" ? tour.days >= 6 && tour.days <= 9 : tour.days >= 10);
@@ -48,29 +32,26 @@ export function HomeExperience() {
   const faqSchema = { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: faqs.map(([name, answer]) => ({ "@type": "Question", name, acceptedAnswer: { "@type": "Answer", text: answer } })) };
 
   return <div className="ba-home">
-    <section className="ba-hero">
+    <section className="ba-hero ba-hero-premium">
       <img src={img.hero} alt="" fetchPriority="high" className="ba-hero-image" />
-      <video className="ba-hero-video" autoPlay muted loop playsInline preload="metadata" poster="https://raw.githubusercontent.com/Sheddymae/bahari-asili-safaris/922fffd454c0b430a5ee4cb11591a8b4c9519796/public/images/hero/video-poster.jpg" aria-hidden="true">
-        <source src="https://raw.githubusercontent.com/Sheddymae/bahari-asili-safaris/922fffd454c0b430a5ee4cb11591a8b4c9519796/public/videos/hero-drone-mobile.mp4" type="video/mp4" media="(max-width: 767px)" />
-        <source src="https://raw.githubusercontent.com/Sheddymae/bahari-asili-safaris/922fffd454c0b430a5ee4cb11591a8b4c9519796/public/videos/hero-drone-desktop.mp4" type="video/mp4" />
-      </video>
       <div className="ba-hero-shade" />
       <div className="ba-hero-copy">
         <p className="ba-eyebrow ba-eyebrow-light">PRIVATE & GROUP SAFARIS · EAST AFRICA</p>
-        <h1>East Africa,<br/><em key={heroPhrase} className="ba-hero-rotating" aria-live="polite" aria-atomic="true">{heroPhrases[heroPhrase]}</em></h1>
-        <p>Explore Kenya and Tanzania with a thoughtfully planned safari, clear advice and an itinerary shaped around your dates, interests and pace.</p>
-        <div className="ba-hero-actions">
-          <button className="ba-button" onClick={() => setQuoteOpen(true)}>Plan my safari <ArrowRight size={16}/></button>
-          <a className="ba-button ba-button-outline" href="#safaris">View safari journeys</a>
-        </div>
-        <div className="ba-trust"><span><ShieldCheck size={16}/> Personal trip planning</span><span><Globe2 size={16}/> Kenya & Tanzania</span><span><HeartHandshake size={16}/> Journeys shaped around you</span></div>
+        <h1>East Africa, follow the call<br className="ba-hero-break"/> of the <span>wild.</span></h1>
+        <p>A thoughtfully planned safari shaped around your dates, interests and pace.</p>
       </div>
-      <div className="ba-search">
+      <div className="ba-search ba-search-glass">
         <label><span>Destination</span><select value={destination} onChange={e=>setDestination(e.target.value)}><option>Any destination</option><option>Kenya</option><option>Tanzania</option><option>Both countries</option></select></label>
         <label><span>Duration</span><select value={duration} onChange={e=>setDuration(e.target.value)}><option>Any duration</option><option>1–5 days</option><option>6–9 days</option><option>10+ days</option></select></label>
-        <label><span>Travellers</span><select value={travellers} onChange={e=>setTravellers(e.target.value)}><option>Any group</option><option>1–2 travellers</option><option>3–4 travellers</option><option>5+ travellers</option></select></label>
-        <button onClick={()=>{setFiltered(true);document.getElementById("safaris")?.scrollIntoView({behavior:"smooth"});}} className="ba-button">Find my safari <ArrowRight size={16}/></button>
+        <label><span>Travellers</span><select value={travellers} onChange={e=>setTravellers(e.target.value)}><option>Any group</option><option>1–2 adults</option><option>2 adults, 1 child</option><option>2 adults, 2 children</option><option>3–4 adults</option><option>5+ travellers</option></select></label>
+        <button onClick={()=>{setFiltered(true);document.getElementById("safaris")?.scrollIntoView({behavior:"smooth"});}} className="ba-button ba-search-submit">Find my safari <ArrowRight size={16}/></button>
       </div>
+    </section>
+    <section className="ba-hero-stats" aria-label="About our safari collection">
+      <article><strong>2</strong><span>Countries</span></article>
+      <article><strong>6</strong><span>Destinations</span></article>
+      <article><strong>5</strong><span>Safari journeys</span></article>
+      <article><strong>Private</strong><span>& group safaris</span></article>
     </section>
 
     <section className="ba-section ba-destinations" id="destinations">
