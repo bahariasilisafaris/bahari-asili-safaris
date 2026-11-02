@@ -119,23 +119,30 @@ function RootComponent() {
   const [preloaderProgress, setPreloaderProgress] = useState(0);
 
   useEffect(() => {
+    const body = document.body;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       setPreloaderVisible(false);
       return;
     }
+    body.classList.add("ba-loading");
     const startedAt = window.performance.now();
-    const duration = 1550;
-    const interval = window.setInterval(() => {
-      const elapsed = window.performance.now() - startedAt;
-      setPreloaderProgress(Math.min(100, Math.round((elapsed / duration) * 100)));
-    }, 24);
+    const duration = 3200;
+    let frame = 0;
+    const tick = (now: number) => {
+      const progress = Math.min(100, Math.round(((now - startedAt) / duration) * 100));
+      setPreloaderProgress(progress);
+      if (progress < 100) frame = window.requestAnimationFrame(tick);
+    };
+    frame = window.requestAnimationFrame(tick);
     const timeout = window.setTimeout(() => {
       setPreloaderProgress(100);
       setPreloaderVisible(false);
-    }, duration + 120);
+      body.classList.remove("ba-loading");
+    }, duration + 350);
     return () => {
-      window.clearInterval(interval);
+      window.cancelAnimationFrame(frame);
       window.clearTimeout(timeout);
+      body.classList.remove("ba-loading");
     };
   }, []);
 
@@ -181,16 +188,31 @@ function RootComponent() {
     <QueryClientProvider client={queryClient}>
       {preloaderVisible && (
         <div className="ba-preloader" role="status" aria-label={`Loading Bahari Asili Safaris, ${preloaderProgress}%`}>
-          <div className="ba-preloader-panel ba-preloader-panel-left" />
-          <div className="ba-preloader-panel ba-preloader-panel-right" />
-          <div className="ba-preloader-center-line" aria-hidden="true" />
-          <div className="ba-preloader-content">
-            <div className="ba-preloader-mark"><span>BAHARI ASILI</span><b>SAFARIS</b><i aria-hidden="true">✳</i></div>
-            <p className="ba-preloader-caption">YOUR EAST AFRICAN JOURNEY BEGINS</p>
-            <div className="ba-preloader-progress" aria-hidden="true"><span style={{ width: `${preloaderProgress}%` }} /></div>
-            <div className="ba-preloader-meta"><span>PREPARING YOUR EXPERIENCE</span><strong>{String(preloaderProgress).padStart(2, "0")}%</strong></div>
-          </div>
-          <span className="ba-preloader-index" aria-hidden="true">KENYA&nbsp; / &nbsp;TANZANIA</span>
+          {(["top", "bottom"] as const).map((half) => (
+            <div className={`ba-preloader-half ba-preloader-half--${half}`} key={half}>
+              <div className="ba-preloader-stars" aria-hidden="true" />
+              <div className="ba-preloader-scene">
+                <div className="ba-preloader-globe" aria-hidden="true">
+                  <span className="ba-globe-orbit ba-globe-orbit--one" />
+                  <span className="ba-globe-orbit ba-globe-orbit--two" />
+                  <span className="ba-globe-meridian" />
+                  <strong>{preloaderProgress}<small>%</small></strong>
+                </div>
+                <div className="ba-preloader-brand">BAHARI <b>ASILI</b></div>
+                <div className="ba-preloader-route">
+                  <span>WATAMU</span><i className="ba-preloader-dot" />
+                  <div className="ba-preloader-rail">
+                    <span className="ba-preloader-rail-fill" style={{ width: `${preloaderProgress}%` }} />
+                    <svg viewBox="0 0 24 24" aria-hidden="true" style={{ left: `${preloaderProgress}%` }}>
+                      <path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z" />
+                    </svg>
+                  </div>
+                  <i className="ba-preloader-dot ba-preloader-dot--end" /><span>MAASAI MARA</span>
+                </div>
+                <p className="ba-preloader-hint">PREPARING YOUR SAFARI JOURNEY</p>
+              </div>
+            </div>
+          ))}
         </div>
       )}
       <Nav />
