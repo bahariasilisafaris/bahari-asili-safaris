@@ -815,3 +815,25 @@ main .ba-home .ba-tour-content h3 {
 @media (max-width: 640px) { .masai-edge { padding-bottom: 20px; } .masai-edge::after { height: 18px; } .masai-edge-colour { height: 18px; } }
 @media (prefers-reduced-motion: reduce) { .ba-preloader, .ba-preloader-panel, .ba-preloader-mark { animation-duration: .01ms !important; animation-delay: 0ms !important; } }
 @media print { .masai-texture::before, .masai-edge::after, .masai-divider, .masai-edge-colour, .ba-preloader { display: none !important; } }
+
+
+/* Split-screen brand preloader: progress, counter and centre-line finish. */
+.ba-preloader { background:#104b59; animation:none; isolation:isolate; }
+.ba-preloader-panel { z-index:1; width:50.1%; background:#104b59; will-change:transform; }
+.ba-preloader-panel-left { animation:ba-preloader-left 1.48s .16s cubic-bezier(.76,0,.24,1) forwards; }
+.ba-preloader-panel-right { animation:ba-preloader-right 1.48s .16s cubic-bezier(.76,0,.24,1) forwards; }
+.ba-preloader-center-line { position:absolute; z-index:2; top:12%; bottom:12%; left:50%; width:1px; background:rgb(255 255 255 / 24%); transform:scaleY(0); transform-origin:top; animation:ba-preloader-line 1.2s .12s ease forwards; }
+.ba-preloader-content { position:relative; z-index:3; display:grid; justify-items:center; width:min(360px,calc(100% - 48px)); color:#fff; animation:ba-preloader-content 1.55s ease forwards; }
+.ba-preloader-mark { animation:none; gap:7px; font-family:"Manrope",sans-serif; font-size:14px; font-weight:800; letter-spacing:.28em; }
+.ba-preloader-mark b { font-size:11px; letter-spacing:.48em; }
+.ba-preloader-mark i { margin-top:15px; font-size:25px; }
+.ba-preloader-caption { margin-top:28px; color:rgb(255 255 255 / 68%); font-size:9px; font-weight:700; letter-spacing:.2em; text-align:center; }
+.ba-preloader-progress { width:100%; height:2px; margin-top:15px; overflow:hidden; background:rgb(255 255 255 / 20%); }
+.ba-preloader-progress span { display:block; height:100%; background:#ff7418; transition:width 80ms linear; }
+.ba-preloader-meta { display:flex; width:100%; justify-content:space-between; gap:12px; margin-top:10px; color:rgb(255 255 255 / 62%); font-size:8px; font-weight:700; letter-spacing:.12em; }
+.ba-preloader-meta strong { color:#ffb47f; font-variant-numeric:tabular-nums; font-size:10px; }
+.ba-preloader-index { position:absolute; z-index:3; right:clamp(20px,4vw,58px); bottom:28px; color:rgb(255 255 255 / 56%); font-size:9px; font-weight:700; letter-spacing:.18em; }
+@keyframes ba-preloader-line { 0% { opacity:0; transform:scaleY(0); } 30% { opacity:1; } 100% { opacity:.7; transform:scaleY(1); } }
+@keyframes ba-preloader-content { 0% { opacity:0; transform:translateY(14px); } 18% { opacity:1; transform:translateY(0); } 78% { opacity:1; transform:translateY(0); } 100% { opacity:0; transform:translateY(-8px); } }
+@media(max-width:640px) { .ba-preloader-content { width:min(300px,calc(100% - 48px)); } .ba-preloader-caption { font-size:8px; letter-spacing:.14em; } .ba-preloader-index { right:18px; bottom:20px; font-size:8px; } }
+@media(prefers-reduced-motion:reduce) { .ba-preloader,.ba-preloader-panel,.ba-preloader-center-line,.ba-preloader-content { animation:none!important; transition:none!important; } .ba-preloader { display:none!important; } }

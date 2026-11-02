@@ -116,14 +116,27 @@ function RootShell({ children }: { children: ReactNode }) {
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   const [preloaderVisible, setPreloaderVisible] = useState(true);
+  const [preloaderProgress, setPreloaderProgress] = useState(0);
 
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       setPreloaderVisible(false);
       return;
     }
-    const timeout = window.setTimeout(() => setPreloaderVisible(false), 950);
-    return () => window.clearTimeout(timeout);
+    const startedAt = window.performance.now();
+    const duration = 1550;
+    const interval = window.setInterval(() => {
+      const elapsed = window.performance.now() - startedAt;
+      setPreloaderProgress(Math.min(100, Math.round((elapsed / duration) * 100)));
+    }, 24);
+    const timeout = window.setTimeout(() => {
+      setPreloaderProgress(100);
+      setPreloaderVisible(false);
+    }, duration + 120);
+    return () => {
+      window.clearInterval(interval);
+      window.clearTimeout(timeout);
+    };
   }, []);
 
   useEffect(() => {
@@ -166,7 +179,20 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      {preloaderVisible && <div className="ba-preloader" role="status" aria-label="Loading Bahari Asili Safaris"><div className="ba-preloader-panel ba-preloader-panel-left" /><div className="ba-preloader-panel ba-preloader-panel-right" /><div className="ba-preloader-mark"><span>BAHARI ASILI</span><b>SAFARIS</b><i aria-hidden="true">✳</i></div></div>}
+      {preloaderVisible && (
+        <div className="ba-preloader" role="status" aria-label={`Loading Bahari Asili Safaris, ${preloaderProgress}%`}>
+          <div className="ba-preloader-panel ba-preloader-panel-left" />
+          <div className="ba-preloader-panel ba-preloader-panel-right" />
+          <div className="ba-preloader-center-line" aria-hidden="true" />
+          <div className="ba-preloader-content">
+            <div className="ba-preloader-mark"><span>BAHARI ASILI</span><b>SAFARIS</b><i aria-hidden="true">✳</i></div>
+            <p className="ba-preloader-caption">YOUR EAST AFRICAN JOURNEY BEGINS</p>
+            <div className="ba-preloader-progress" aria-hidden="true"><span style={{ width: `${preloaderProgress}%` }} /></div>
+            <div className="ba-preloader-meta"><span>PREPARING YOUR EXPERIENCE</span><strong>{String(preloaderProgress).padStart(2, "0")}%</strong></div>
+          </div>
+          <span className="ba-preloader-index" aria-hidden="true">KENYA&nbsp; / &nbsp;TANZANIA</span>
+        </div>
+      )}
       <Nav />
       <main>
         <Outlet />
